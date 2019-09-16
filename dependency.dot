@@ -1,0 +1,18 @@
+digraph injector {
+graph [rankdir=TB];
+
+k_73527111 [style=dashed, margin=0.02, label=<<table cellspacing="0" cellpadding="5" cellborder="0" border="0"><tr><td align="left" port="header" bgcolor="#ffffff"><font color="#000000">LoggerInterface<br align="left"/></font></td></tr></table>>, shape=box]
+k_f319525a [style=solid, margin=0.02, label=<<table cellspacing="0" cellpadding="5" cellborder="1" border="0"><tr><td align="left" port="header" bgcolor="#000000"><font color="#ffffff">DatabaseLogger<br align="left"/></font></td></tr><tr><td align="left" port="m_89759092">&lt;construct&gt;</td></tr></table>>, shape=box]
+k_18fba087 [style=dashed, margin=0.02, label=<<table cellspacing="0" cellpadding="5" cellborder="0" border="0"><tr><td align="left" port="header" bgcolor="#ffffff"><font color="#000000">PdoInterface<br align="left"/></font></td></tr></table>>, shape=box]
+i_18fba087 [style=solid, margin=0.02, label=<<table cellspacing="0" cellpadding="5" cellborder="1" border="0"><tr><td align="left" port="header" bgcolor="#aaaaaa"><font color="#ffffff">PdoProvider<br align="left"/></font></td></tr><tr><td align="left" port="m_65f6d5d3">&lt;construct&gt;</td></tr></table>>, shape=box]
+k_9a9a6f65 [style=dashed, margin=0.02, label=<<table cellspacing="0" cellpadding="5" cellborder="0" border="0"><tr><td align="left" port="header" bgcolor="#ffffff"><font color="#000000" point-size="10">@Dsn<br align="left"/></font><font color="#000000">scalar<br align="left"/></font></td></tr></table>>, shape=box]
+k_9a9a6f66 [style=dashed, margin=0.02, label=<<table cellspacing="0" cellpadding="5" cellborder="0" border="0"><tr><td align="left" port="header" bgcolor="#ffffff"><font color="#000000" point-size="10">@UserId<br align="left"/></font><font color="#000000">scalar<br align="left"/></font></td></tr></table>>, shape=box]
+k_9a9a6f67 [style=dashed, margin=0.02, label=<<table cellspacing="0" cellpadding="5" cellborder="0" border="0"><tr><td align="left" port="header" bgcolor="#ffffff"><font color="#000000" point-size="10">@UserPassword<br align="left"/></font><font color="#000000">scalar<br align="left"/></font></td></tr></table>>, shape=box]
+
+k_73527111 -> k_f319525a [style=dashed, arrowtail=none, arrowhead=onormal]
+k_f319525a:m_89759092:e -> k_18fba087 [style=solid, arrowtail=none, arrowhead=normal]
+k_18fba087 -> i_18fba087 [style=dashed, arrowtail=none, arrowhead=onormalonormal]
+i_18fba087:m_65f6d5d3:e -> k_9a9a6f65 [style=solid, arrowtail=none, arrowhead=normal]
+i_18fba087:m_65f6d5d3:e -> k_9a9a6f66 [style=solid, arrowtail=none, arrowhead=normal]
+i_18fba087:m_65f6d5d3:e -> k_9a9a6f67 [style=solid, arrowtail=none, arrowhead=normal]
+}
