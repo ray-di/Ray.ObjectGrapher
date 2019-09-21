@@ -24,7 +24,7 @@ final class ClassNode
     public function __construct(string $id, string $class, array $setters)
     {
         $this->id = $id;
-        $this->class = $class;
+        $this->class = str_replace('\\', '\\\\', $class);
         foreach ($setters as $setterMethod => $port) {
             $this->settersTable .= "<tr><td align=\"left\" port=\"{$port}\">&lt;{$setterMethod}&gt;</td></tr>";
         }

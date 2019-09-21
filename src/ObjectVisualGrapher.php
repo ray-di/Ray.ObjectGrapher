@@ -34,19 +34,22 @@ class ObjectVisualGrapher
         $nodes = $arrows = [];
         foreach ($this->container as $dependencyIndex => $dependency) {
             [$interface, $name] = \explode('-', $dependencyIndex);
-            $interfaceId = $this->getInterfaceId($interface, $name);
-            $nodes[] = new InterfaceNode($interfaceId, $interface, $name);
+            $dependencyIndexName = $this->getDependencyIndexName($interface, $name);
+            $isTargetBinding = sprintf('%s-%s', $this->name($interface), $name) === $dependencyIndex;
+            if (! $isTargetBinding) {
+                $nodes[] = new InterfaceNode($dependencyIndexName, $interface, $name);
+            }
             if ($dependency instanceof Dependency) {
-                $this->getDependencyNode($interfaceId, $dependency, $nodes, $arrows);
+                $this->dependencyNode($dependencyIndexName, $dependency, $nodes, $arrows);
             }
             if ($dependency instanceof DependencyProvider) {
-                $this->getProviderNode($interfaceId, $dependency, $nodes, $arrows);
+                $this->getProviderNode($dependencyIndexName, $dependency, $nodes, $arrows);
             }
         }
         return [$nodes, $arrows];
     }
 
-    private function getInterfaceId(string $interace, string $name)
+    private function getDependencyIndexName(string $interace, string $name) : string
     {
         return sprintf('i_%s_%s', $this->name($interace), $this->name($name));
     }
@@ -86,13 +89,15 @@ EOT;
         return $property->getValue($object);
     }
 
-    public function getDependencyNode(string $interfaceId, Dependency $dependency, array &$nodes, array &$arrows) : void
+    public function dependencyNode(string $interfaceId, Dependency $dependency, array &$nodes, array &$arrows) : void
     {
         $newInstance = $this->prop($dependency, 'newInstance');
         $class = $this->prop($newInstance, 'class');
         $classId = $this->getClassId($class);
         $nodes[] = new ClassNode($classId, $class, ['construct' => null]);
-        $arrows[] = new ToClass($interfaceId, $classId);
+        if ($interfaceId) {
+            $arrows[] = new ToClass($interfaceId, $classId);
+        }
         // constructor
         $firstArguments = $this->prop($newInstance, 'arguments');
         if ($firstArguments) {
@@ -116,7 +121,9 @@ EOT;
             $arguments = $this->prop($firstArguments, 'arguments');
             $setters = $this->getSetters($arrows, $class, $arguments, $classId);
             $nodes[] = new ProviderNode($classId, $class, $setters);
-            $arrows[] = new ToProvider($interfaceId, $classId);
+            if ($interfaceId) {
+                $arrows[] = new ToProvider($interfaceId, $classId);
+            }
             return;
         }
         $nodes[] = new ClassNode($classId, $class, []);
@@ -136,7 +143,7 @@ EOT;
             $dependencyIndex = $this->prop($argument, 'index');
             [$interface, $name] = \explode('-', $dependencyIndex);
             $classPort = sprintf('%s:%s:e', $classId, $port);
-            $arrows[] = new Arrow($classPort, $this->getInterfaceId($interface, $name), $interface);
+            $arrows[] = new Arrow($classPort, $this->getDependencyIndexName($interface, $name), $interface);
         }
 
         return $setters;
