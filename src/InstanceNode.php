@@ -6,7 +6,7 @@ namespace Ray\ObjectVisualGrapher;
 
 use function htmlspecialchars;
 
-final class InterfaceNode
+final class InstanceNode
 {
     /**
      * @var string
@@ -26,7 +26,7 @@ final class InterfaceNode
     public function __construct(string $id, string $interface, string $named)
     {
         $this->id = $id;
-        $this->interface = str_replace('\\', '\\\\', $interface);
+        $this->interface = htmlspecialchars(str_replace('\\', '\\\\', $interface));
         $this->named = $named ? "<font color=\"#000000\" point-size=\"10\">{$named}<br align=\"left\"/></font>" : '';
     }
 
