@@ -32,7 +32,7 @@ final class ProviderNode
 
     public function __toString()
     {
-        return /** @lang html */
+        return /* @lang html */
             <<< EOT
 {$this->id} [style=solid, margin=0.02, label=<<table cellspacing="0" cellpadding="5" cellborder="1" border="0"><tr><td align="left" port="header" bgcolor="#aaaaaa"><font color="#ffffff">{$this->provider}<br align="left"/></font></td></tr>
 {$this->settersTable}

@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace Ray\ObjectVisualGrapher;
 
 use BEAR\Resource\Module\ResourceModule;
-use BEAR\Sunday\Provide\Application\AppModule;
 use PHPUnit\Framework\TestCase;
 
 class ObjectVisualGrapherTest extends TestCase
@@ -26,9 +25,13 @@ class ObjectVisualGrapherTest extends TestCase
         $this->assertInstanceOf(ObjectVisualGrapher::class, $actual);
     }
 
-    public function test__invoke()
+    public function test__invoke() : void
     {
         $dot = ($this->objectVisualGrapher)();
-        file_put_contents(dirname(__DIR__) . '/g.dot', $dot);
+        $file = dirname(__DIR__) . '/g.dot';
+        file_put_contents($file, $dot);
+        $dot = file_get_contents($file);
+        $this->assertContains('t__BEAR_Resource_Annotation_AppName [style', $dot);
+        $this->assertContains('t_BEAR_Resource_ResourceInterface_ -> c_BEAR_Resource_Resource', $dot);
     }
 }

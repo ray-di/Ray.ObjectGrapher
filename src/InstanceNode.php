@@ -32,9 +32,9 @@ final class InstanceNode
 
     public function __toString()
     {
-        return /** @lang html */
+        return /* @lang html */
             <<< EOT
-{$this->id} [style=dashed, margin=0.02, label=<<table cellspacing="0" cellpadding="5" cellborder="0" border="0"><tr><td align="left" port="header" bgcolor="#ffffff">{$this->named}<font color="#000000">{$this->interface}<br align="left"/></font></td></tr></table>>, shape=box]
+{$this->id} [style=dashed, margin=0.02, label=<<table cellspacing="0" cellpadding="5" cellborder="0" border="0"><tr><td align="left" port="header" bgcolor="#ffffff">{$this->named}<font color="#000000">*instance<br align="left"/></font></td></tr></table>>, shape=box]
 EOT;
     }
 }

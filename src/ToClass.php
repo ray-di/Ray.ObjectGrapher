@@ -1,10 +1,12 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Ray\ObjectVisualGrapher;
 
 final class ToClass
 {
-    static $index;
+    public static $index;
 
     /**
      * @var string
