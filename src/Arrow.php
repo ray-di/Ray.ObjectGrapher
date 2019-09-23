@@ -35,7 +35,7 @@ final class Arrow
     public function __toString()
     {
         return <<<EOT
-{$this->interface} -> {$this->class} [style=dashed, arrowtail=none, {$this->arrowHead}]
+{$this->interface} -> {$this->class} [style=solid, arrowtail=none, {$this->arrowHead}]
 EOT;
     }
 }
