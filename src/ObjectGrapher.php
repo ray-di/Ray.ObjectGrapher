@@ -19,7 +19,7 @@ class ObjectGrapher
     private $container;
 
     private $prop;
-    
+
     public function __construct(AbstractModule $module)
     {
         $this->container = $module->getContainer()->getContainer();
@@ -136,7 +136,7 @@ ${string}
 }
 EOT;
     }
-    
+
     private function instanceNode(Graph $graph, string $type, string $name) : void
     {
         $dependencyId = $this->getDependencyId($type, $name);

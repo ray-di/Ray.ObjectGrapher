@@ -7,7 +7,7 @@ namespace Ray\ObjectGrapher;
 use BEAR\Resource\Module\ResourceModule;
 use PHPUnit\Framework\TestCase;
 
-class ObjectGrapherTest extends TestCase
+class ObjectVisualGrapherTest extends TestCase
 {
     /**
      * @var ObjectGrapher
