@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Ray\ObjectVisualGrapher;
+namespace Ray\ObjectGrapher;
 
 use function htmlspecialchars;
 

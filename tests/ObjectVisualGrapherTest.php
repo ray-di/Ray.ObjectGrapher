@@ -2,32 +2,32 @@
 
 declare(strict_types=1);
 
-namespace Ray\ObjectVisualGrapher;
+namespace Ray\ObjectGrapher;
 
 use BEAR\Resource\Module\ResourceModule;
 use PHPUnit\Framework\TestCase;
 
-class ObjectVisualGrapherTest extends TestCase
+class ObjectGrapherTest extends TestCase
 {
     /**
-     * @var ObjectVisualGrapher
+     * @var ObjectGrapher
      */
-    protected $objectVisualGrapher;
+    protected $objectGrapher;
 
     protected function setUp() : void
     {
-        $this->objectVisualGrapher = new ObjectVisualGrapher(new ResourceModule('a'));
+        $this->objectGrapher = new ObjectGrapher(new ResourceModule('a'));
     }
 
-    public function testIsInstanceOfObjectVisualGrapher() : void
+    public function testIsInstanceOfObjectGrapher() : void
     {
-        $actual = $this->objectVisualGrapher;
-        $this->assertInstanceOf(ObjectVisualGrapher::class, $actual);
+        $actual = $this->objectGrapher;
+        $this->assertInstanceOf(ObjectGrapher::class, $actual);
     }
 
     public function test__invoke() : void
     {
-        $dot = ($this->objectVisualGrapher)();
+        $dot = ($this->objectGrapher)();
         $file = dirname(__DIR__) . '/g.dot';
         file_put_contents($file, $dot);
         $dot = file_get_contents($file);

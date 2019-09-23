@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Ray\ObjectVisualGrapher;
+namespace Ray\ObjectGrapher;
 
 use Ray\Di\AbstractModule;
 use Ray\Di\Argument;
@@ -11,7 +11,7 @@ use Ray\Di\DependencyInterface;
 use Ray\Di\DependencyProvider;
 use Ray\Di\Instance;
 
-class ObjectVisualGrapher
+class ObjectGrapher
 {
     /**
      * @var array|\Ray\Di\Dependency[]

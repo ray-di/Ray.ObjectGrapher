@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Ray\ObjectVisualGrapher\Exception;
+namespace Ray\ObjectGrapher\Exception;
 
 class RuntimeException extends \RuntimeException
 {

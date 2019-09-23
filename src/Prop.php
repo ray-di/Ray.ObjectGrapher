@@ -1,6 +1,6 @@
 <?php
 
-namespace Ray\ObjectVisualGrapher;
+namespace Ray\ObjectGrapher;
 
 final class Prop
 {

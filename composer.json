@@ -22,12 +22,12 @@
     },
     "autoload": {
         "psr-4": {
-            "Ray\\ObjectVisualGrapher\\": "src/"
+            "Ray\\ObjectGrapher\\": "src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Ray\\ObjectVisualGrapher\\": [
+            "Ray\\ObjectGrapher\\": [
                 "tests/",
                 "tests/Fake"
             ]
