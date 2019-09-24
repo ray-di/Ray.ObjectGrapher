@@ -110,6 +110,9 @@ class ObjectGrapher
 
     private function getDependencyId(string $interace, string $name) : string
     {
+        if (class_exists($interace)) {
+            return $this->getClassId($interace);
+        }
         return sprintf('t_%s_%s', $this->getSnakeName($interace), $this->getSnakeName($name));
     }
 
