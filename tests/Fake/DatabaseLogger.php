@@ -9,4 +9,11 @@ class DatabaseLogger implements LoggerInterface
     public function __construct(PdoInterface $pdo)
     {
     }
+
+    /**
+     * @Inject
+     */
+    public function setFoo(FooInterface $foo)
+    {
+    }
 }
