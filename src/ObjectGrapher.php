@@ -11,32 +11,27 @@ use Ray\Di\DependencyInterface;
 use Ray\Di\DependencyProvider;
 use Ray\Di\Instance;
 
-class ObjectGrapher
+final class ObjectGrapher
 {
-    /**
-     * @var array|\Ray\Di\Dependency[]
-     */
-    private $container;
-
     private $prop;
 
-    public function __construct(AbstractModule $module)
+    public function __construct()
     {
-        $this->container = $module->getContainer()->getContainer();
         $this->prop = new Prop;
     }
 
-    public function __invoke() : string
+    public function __invoke(AbstractModule $module) : string
     {
-        $graph = $this->getGraph();
+        $container = $module->getContainer()->getContainer();
+        $graph = $this->getGraph($container);
 
         return $this->toString($graph->nodes, $graph->arrows);
     }
 
-    public function getGraph() : Graph
+    public function getGraph(array $container) : Graph
     {
         $graph = new Graph;
-        foreach ($this->container as $dependencyIndex => $dependency) {
+        foreach ($container as $dependencyIndex => $dependency) {
             [$type, $name] = explode('-', $dependencyIndex);
             $this->setGraph($graph, $type, $name, $dependency);
         }
@@ -113,6 +108,7 @@ class ObjectGrapher
         if (class_exists($interace)) {
             return $this->getClassId($interace);
         }
+
         return sprintf('t_%s_%s', $this->getSnakeName($interace), $this->getSnakeName($name));
     }
 

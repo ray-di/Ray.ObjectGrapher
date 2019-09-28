@@ -16,7 +16,7 @@ class ObjectVisualGrapherTest extends TestCase
 
     protected function setUp() : void
     {
-        $this->objectGrapher = new ObjectGrapher(new ResourceModule('a'));
+        $this->objectGrapher = new ObjectGrapher;
     }
 
     public function testIsInstanceOfObjectGrapher() : void
@@ -27,7 +27,14 @@ class ObjectVisualGrapherTest extends TestCase
 
     public function test__invoke() : void
     {
-        $dot = ($this->objectGrapher)();
+        $dot = ($this->objectGrapher)(new FakeModule());
+        $file = dirname(__DIR__) . '/g.dot';
+        file_put_contents($file, $dot);
+        $dot = file_get_contents($file);
+    }
+    public function est__invokeBearResource() : void
+    {
+        $dot = ($this->objectGrapher)(new ResourceModule('a'));
         $file = dirname(__DIR__) . '/g.dot';
         file_put_contents($file, $dot);
         $dot = file_get_contents($file);
