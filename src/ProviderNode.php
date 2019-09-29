@@ -17,7 +17,7 @@ final class ProviderNode
     private $provider;
 
     /**
-     * @var array
+     * @var string
      */
     private $settersTable = '';
 

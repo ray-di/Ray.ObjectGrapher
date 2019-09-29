@@ -39,8 +39,8 @@
         ],
         "tests": [
             "@cs",
-            "vendor/bin/phpmd src,tests text ./phpmd.xml",
-            "vendor/bin/phpstan analyse -l max src tests -c phpstan.neon --no-progress",
+            "vendor/bin/phpmd src text ./phpmd.xml",
+            "vendor/bin/phpstan analyse -l max src -c phpstan.neon --no-progress",
             "@test"
         ],
         "coverage": [

@@ -22,7 +22,7 @@ final class ClassNode
     private $class;
 
     /**
-     * @var array
+     * @var string
      */
     private $settersTable = '';
 

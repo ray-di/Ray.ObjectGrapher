@@ -31,6 +31,9 @@ class ObjectVisualGrapherTest extends TestCase
         $file = __DIR__ . '/fake.dot';
         file_put_contents($file, $dot);
         $dot = file_get_contents($file);
+        $this->assertContains('t_Ray_ObjectGrapher_LoggerInterface_ -> c_Ray_ObjectGrapher_DatabaseLogger', $dot);
+        $this->assertContains('c_Ray_ObjectGrapher_DatabaseLogger:p_Ray_ObjectGrapher_DatabaseLogger_construct:e -> t_Ray_ObjectGrapher_PdoInterface_', $dot);
+        $this->assertContains('c_Ray_ObjectGrapher_DatabaseLogger:p_Ray_ObjectGrapher_DatabaseLogger_setFoo:e -> t_Ray_ObjectGrapher_FooInterface_', $dot);
     }
 
     public function test__invokeBearResource() : void
