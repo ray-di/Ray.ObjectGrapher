@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Ray\ObjectGrapher;
 
+use BEAR\Package\PackageModule;
 use BEAR\Resource\Module\ResourceModule;
 use PHPUnit\Framework\TestCase;
 
@@ -44,5 +45,13 @@ class ObjectVisualGrapherTest extends TestCase
         $dot = file_get_contents($file);
         $this->assertContains('t__BEAR_Resource_Annotation_AppName [style', $dot);
         $this->assertContains('t_BEAR_Resource_ResourceInterface_ -> c_BEAR_Resource_Resource', $dot);
+    }
+
+    public function test__invokeBearPackage() : void
+    {
+        $dot = ($this->objectGrapher)(new PackageModule);
+        $file = __DIR__ . '/package.dot';
+        file_put_contents($file, $dot);
+        $dot = file_get_contents($file);
     }
 }

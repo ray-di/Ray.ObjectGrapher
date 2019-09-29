@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Ray\ObjectGrapher;
 
-final class ToClass
+final class ToClass implements ArrowInterface
 {
     public static $index;
 

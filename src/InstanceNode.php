@@ -6,7 +6,7 @@ namespace Ray\ObjectGrapher;
 
 use function htmlspecialchars;
 
-final class InstanceNode
+final class InstanceNode implements NodeInterface
 {
     /**
      * @var string

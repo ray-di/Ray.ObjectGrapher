@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Ray\ObjectGrapher;
 
-final class InterfaceNode
+final class InterfaceNode implements NodeInterface
 {
     /**
      * @var string
