@@ -15,5 +15,6 @@ final class FakeModule extends AbstractModule
         $this->bind()->annotatedWith('dsn')->toInstance('');
         $this->bind()->annotatedWith('id')->toInstance('');
         $this->bind()->annotatedWith('pass')->toInstance('');
+        $this->bind(FooInterface::class)->to(Foo::class);
     }
 }

@@ -6,10 +6,12 @@ namespace Ray\ObjectGrapher;
 
 use Ray\Di\AbstractModule;
 use Ray\Di\Argument;
+use Ray\Di\Arguments;
 use Ray\Di\Dependency;
 use Ray\Di\DependencyInterface;
 use Ray\Di\DependencyProvider;
 use Ray\Di\Instance;
+use Ray\Di\SetterMethods;
 
 final class ObjectGrapher
 {
@@ -45,13 +47,10 @@ final class ObjectGrapher
         $newInstance = ($this->prop)($dependency, 'newInstance');
         $class = ($this->prop)($newInstance, 'class');
         $classId = $this->getClassId($class);
-        $firstArguments = ($this->prop)($newInstance, 'arguments');
-        $setters = [];
-        if ($firstArguments) {
-            $arguments = ($this->prop)($firstArguments, 'arguments');
-            $setters = $this->getSetters($graph, $class, $arguments, $classId);
-            $graph->nodes[] = new ProviderNode($classId, $class, $setters);
-        }
+        $arguments = ($this->prop)($newInstance, 'arguments');
+        $setterMethods = ($this->prop)($newInstance, 'setterMethods');
+        $setters = $this->lineDependency($graph, $class, $arguments, $setterMethods, $classId);
+        $graph->nodes[] = new ProviderNode($classId, $class, $setters);
         if ($interfaceId) {
             $graph->arrows[] = new ToProvider($interfaceId, $classId);
         }
@@ -63,15 +62,26 @@ final class ObjectGrapher
         return str_replace('\\', '_', $class);
     }
 
-    public function getSetters(Graph $graph, $class, $arguments, string $classId) : array
+    public function lineDependency(Graph $graph, $class, ?Arguments $arguments, SetterMethods $setterMethods, string $classId) : array
     {
+        if (! $arguments) {
+            return [];
+        }
+        // constructor injection
+        $arguments = ($this->prop)($arguments, 'arguments');
         $port = sprintf('p_%s_construct', $this->getSnakeName($class));
         $setters = ['construct' => $port];
-        foreach ($arguments as $argument) {
-            /** @var Argument $arugment */
-            $dependencyIndex = ($this->prop)($argument, 'index');
-            $classPort = sprintf('%s:%s:e', $classId, $port);
-            $this->setterArrow($graph, $classPort, $dependencyIndex);
+        $this->drawInjectionGraph($graph, $arguments, $classId, $port);
+        // setter injection
+        $setterMethods = ($this->prop)($setterMethods, 'setterMethods');
+
+        foreach ($setterMethods as $setterMethod) {
+            $setterMethodArguments = ($this->prop)($setterMethod, 'arguments');
+            $arguments = ($this->prop)($setterMethodArguments, 'arguments');
+            $setterMethodName = ($this->prop)($setterMethod, 'method');
+            $setterMethodPort = sprintf('p_%s_%s', $this->getSnakeName($class), $setterMethodName);
+            $this->drawInjectionGraph($graph, $arguments, $classId, $setterMethodPort);
+            $setters += [$setterMethodName => $setterMethodPort];
         }
 
         return $setters;
@@ -83,6 +93,16 @@ final class ObjectGrapher
         $dependencyId = $this->getDependencyId($type, $name);
         $graph->arrows[] = new Arrow($classPort, $dependencyId, $type);
         $graph->nodes[] = new InterfaceNode($dependencyId, $type, $name);
+    }
+
+    private function drawInjectionGraph(Graph $graph, array $arguments, string $classId, string $port) : void
+    {
+        foreach ($arguments as $argument) {
+            /** @var Argument $arugment */
+            $dependencyIndex = ($this->prop)($argument, 'index');
+            $classPort = sprintf('%s:%s:e', $classId, $port);
+            $this->setterArrow($graph, $classPort, $dependencyIndex);
+        }
     }
 
     private function setGraph(Graph $graph, $type, $name, DependencyInterface $dependency) : void
@@ -152,15 +172,9 @@ EOT;
             $graph->arrows[] = new ToClass($interfaceId, $classId);
         }
         // constructor
-        $firstArguments = ($this->prop)($newInstance, 'arguments');
-        if ($firstArguments) {
-            $arguments = ($this->prop)($firstArguments, 'arguments');
-            // constructor
-            $setters = $this->getSetters($graph, $class, $arguments, $classId);
-            $graph->nodes[] = new ClassNode($classId, $class, $setters);
-
-            return;
-        }
-        $graph->nodes[] = new ClassNode($classId, $class, []);
+        $arguments = ($this->prop)($newInstance, 'arguments');
+        $setterMethods = ($this->prop)($newInstance, 'setterMethods');
+        $setters = $this->lineDependency($graph, $class, $arguments, $setterMethods, $classId);
+        $graph->nodes[] = new ClassNode($classId, $class, $setters);
     }
 }
