@@ -6,6 +6,9 @@ namespace Ray\ObjectGrapher;
 
 final class Prop
 {
+    /**
+     * Set object property accesible
+     */
     public function __invoke($object, string $prop)
     {
         if (! $object) {
