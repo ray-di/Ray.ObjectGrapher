@@ -28,14 +28,15 @@ class ObjectVisualGrapherTest extends TestCase
     public function test__invoke() : void
     {
         $dot = ($this->objectGrapher)(new FakeModule());
-        $file = dirname(__DIR__) . '/g.dot';
+        $file = __DIR__ . '/fake.dot';
         file_put_contents($file, $dot);
         $dot = file_get_contents($file);
     }
-    public function est__invokeBearResource() : void
+
+    public function test__invokeBearResource() : void
     {
         $dot = ($this->objectGrapher)(new ResourceModule('a'));
-        $file = dirname(__DIR__) . '/g.dot';
+        $file = __DIR__ . '/res.dot';
         file_put_contents($file, $dot);
         $dot = file_get_contents($file);
         $this->assertContains('t__BEAR_Resource_Annotation_AppName [style', $dot);
