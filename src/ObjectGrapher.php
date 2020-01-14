@@ -68,6 +68,9 @@ final class ObjectGrapher
         return str_replace('\\', '_', $class);
     }
 
+    /**
+     * @return array<string> setter symbol
+     */
     public function lineDependency(Graph $graph, string $class, ?Arguments $arguments, SetterMethods $setterMethods, string $classId) : array
     {
         if (! $arguments) {
