@@ -21,6 +21,11 @@ final class ProviderNode implements NodeInterface
      */
     private $settersTable = '';
 
+    /**
+     * @param string        $id       ID
+     * @param string        $provider Provider
+     * @param array<string> $setters
+     */
     public function __construct(string $id, string $provider, array $setters)
     {
         $this->id = $id;
