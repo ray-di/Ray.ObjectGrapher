@@ -33,6 +33,9 @@ final class ObjectGrapher
         return $this->toString($graph);
     }
 
+    /**
+     * @param array<DependencyInterface> $container
+     */
     public function getGraph(array $container) : Graph
     {
         $graph = new Graph;
@@ -44,7 +47,7 @@ final class ObjectGrapher
         return $graph;
     }
 
-    public function providerNode(string $interfaceId, $dependency, Graph $graph) : void
+    public function providerNode(string $interfaceId, DependencyInterface $dependency, Graph $graph) : void
     {
         $dependency = ($this->prop)($dependency, 'dependency');
         $newInstance = ($this->prop)($dependency, 'newInstance');
