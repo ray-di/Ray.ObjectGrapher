@@ -62,6 +62,7 @@ EOT;
 
     private function setNamespace(string $interface) : void
     {
+        assert(interface_exists($interface) || class_exists($interface));
         $ref = new \ReflectionClass($interface);
         $this->namespace = str_replace('\\', '\\\\', $ref->getNamespaceName());
         $this->interface = $ref->getShortName();
