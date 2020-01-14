@@ -15,6 +15,9 @@ use Ray\Di\SetterMethods;
 
 final class ObjectGrapher
 {
+    /**
+     * @var Prop
+     */
     private $prop;
 
     public function __construct()
