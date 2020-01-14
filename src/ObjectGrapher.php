@@ -63,7 +63,7 @@ final class ObjectGrapher
         $graph->addNode(new ClassNode($classId, $class, $setters));
     }
 
-    public function getSnakeName($class) : string
+    public function getSnakeName(string $class) : string
     {
         return str_replace('\\', '_', $class);
     }
