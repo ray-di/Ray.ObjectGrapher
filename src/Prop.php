@@ -9,12 +9,12 @@ final class Prop
     /**
      * Set object property accesible
      *
-     * @param object $object object
-     * @param string $prop   property
+     * @param null|object $object
+     * @param string      $prop   property
      *
      * @return mixed|string
      */
-    public function __invoke(object $object, string $prop)
+    public function __invoke($object, string $prop)
     {
         if (! $object) {
             throw new \LogicException();
