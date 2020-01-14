@@ -35,6 +35,7 @@ class ObjectVisualGrapherTest extends TestCase
         $this->assertStringContainsString('t_Ray_ObjectGrapher_LoggerInterface_ -> c_Ray_ObjectGrapher_DatabaseLogger', $dot);
         $this->assertStringContainsString('c_Ray_ObjectGrapher_DatabaseLogger:p_Ray_ObjectGrapher_DatabaseLogger_construct:e -> t_Ray_ObjectGrapher_PdoInterface_', $dot);
         $this->assertStringContainsString('c_Ray_ObjectGrapher_DatabaseLogger:p_Ray_ObjectGrapher_DatabaseLogger_setFoo:e -> t_Ray_ObjectGrapher_FooInterface_', $dot);
+        $this->assertStringContainsString('t_Ray_ObjectGrapher_PdoInterface_ -> c_Ray_ObjectGrapher_PdoProvider [style=dashed, arrowtail=none, arrowhead=onormalonormal]', $dot);
     }
 
     public function test__invokeBearResource() : void
@@ -45,6 +46,7 @@ class ObjectVisualGrapherTest extends TestCase
         $dot = file_get_contents($file);
         $this->assertStringContainsString('t__BEAR_Resource_Annotation_AppName [style', $dot);
         $this->assertStringContainsString('t_BEAR_Resource_ResourceInterface_ -> c_BEAR_Resource_Resource', $dot);
+        $this->assertStringContainsString('t_Symfony_Contracts_HttpClient_HttpClientInterface_ -> c_BEAR_Resource_Module_HttpClientProvider [style=dashed, arrowtail=none, arrowhead=onormalonormal]', $dot);
     }
 
     public function test__invokeBearPackage() : void
