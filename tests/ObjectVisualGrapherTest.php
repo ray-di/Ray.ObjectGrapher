@@ -53,5 +53,6 @@ class ObjectVisualGrapherTest extends TestCase
         $file = __DIR__ . '/package.dot';
         file_put_contents($file, $dot);
         $dot = file_get_contents($file);
+        $this->assertContains('t_BEAR_Sunday_Provide_Transfer_ConditionalResponseInterface_ -> c_BEAR_Sunday_Provide_Transfer_ConditionalResponse [style=dashed, arrowtail=none, arrowhead=onormal]', $dot);
     }
 }
