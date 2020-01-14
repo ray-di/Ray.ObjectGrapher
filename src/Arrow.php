@@ -10,7 +10,7 @@ use Ray\Di\ProviderInterface;
 final class Arrow implements ArrowInterface
 {
     /**
-     * @var array
+     * @var array<bool>
      */
     public static $history;
 
