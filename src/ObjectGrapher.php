@@ -147,18 +147,11 @@ graph [rankdir=TB];
 EOT;
     }
 
-    private function instanceNode(Graph $graph, string $type, string $name) : void
-    {
-        $dependencyId = $this->getDependencyId($type, $name);
-        $graph->addNode(new InstanceNode($dependencyId, $type, $name));
-    }
-
     private function dependencyNode(string $interfaceId, DependencyInterface $dependency, Graph $graph, bool $isTargetBinding) : void
     {
         $newInstance = ($this->prop)($dependency, 'newInstance');
         $class = ($this->prop)($newInstance, 'class');
         $classId = $this->getClassId($class);
-        $nodes[] = new ClassNode($classId, $class, ['construct' => null]);
         if (! $isTargetBinding) {
             $graph->addArrow(new ToClass($interfaceId, $classId));
         }
