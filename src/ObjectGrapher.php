@@ -15,6 +15,9 @@ use Ray\Di\SetterMethods;
 
 final class ObjectGrapher
 {
+    /**
+     * @var Prop
+     */
     private $prop;
 
     public function __construct()
@@ -30,6 +33,9 @@ final class ObjectGrapher
         return $this->toString($graph);
     }
 
+    /**
+     * @param array<DependencyInterface> $container
+     */
     public function getGraph(array $container) : Graph
     {
         $graph = new Graph;
@@ -41,7 +47,7 @@ final class ObjectGrapher
         return $graph;
     }
 
-    public function providerNode(string $interfaceId, $dependency, Graph $graph) : void
+    public function providerNode(string $interfaceId, DependencyInterface $dependency, Graph $graph) : void
     {
         $dependency = ($this->prop)($dependency, 'dependency');
         $newInstance = ($this->prop)($dependency, 'newInstance');
@@ -57,12 +63,15 @@ final class ObjectGrapher
         $graph->addNode(new ClassNode($classId, $class, $setters));
     }
 
-    public function getSnakeName($class) : string
+    public function getSnakeName(string $class) : string
     {
         return str_replace('\\', '_', $class);
     }
 
-    public function lineDependency(Graph $graph, $class, ?Arguments $arguments, SetterMethods $setterMethods, string $classId) : array
+    /**
+     * @return array<string> setter symbol
+     */
+    public function lineDependency(Graph $graph, string $class, ?Arguments $arguments, SetterMethods $setterMethods, string $classId) : array
     {
         if (! $arguments) {
             return [];
@@ -95,17 +104,23 @@ final class ObjectGrapher
         $graph->addNode(new InterfaceNode($dependencyId, $type, $name));
     }
 
+    /**
+     * @param Graph           $graph     Graph
+     * @param array<Argument> $arguments Arguments
+     * @param string          $classId   class ID
+     * @param string          $port      port ID
+     */
     private function drawInjectionGraph(Graph $graph, array $arguments, string $classId, string $port) : void
     {
         foreach ($arguments as $argument) {
-            /** @var Argument $arugment */
+            assert($argument instanceof Argument);
             $dependencyIndex = ($this->prop)($argument, 'index');
             $classPort = sprintf('%s:%s:e', $classId, $port);
             $this->setterArrow($graph, $classPort, $dependencyIndex);
         }
     }
 
-    private function setGraph(Graph $graph, $type, $name, DependencyInterface $dependency) : void
+    private function setGraph(Graph $graph, string $type, string $name, DependencyInterface $dependency) : void
     {
         $isTargetBinding = ! interface_exists($type);
         $dependencyId = $this->getDependencyId($type, $name);
@@ -132,7 +147,7 @@ final class ObjectGrapher
         return sprintf('t_%s_%s', $this->getSnakeName($interace), $this->getSnakeName($name));
     }
 
-    private function getClassId(string $class)
+    private function getClassId(string $class) : string
     {
         return 'c_' . $this->getSnakeName($class);
     }
@@ -147,18 +162,11 @@ graph [rankdir=TB];
 EOT;
     }
 
-    private function instanceNode(Graph $graph, string $type, string $name) : void
-    {
-        $dependencyId = $this->getDependencyId($type, $name);
-        $graph->addNode(new InstanceNode($dependencyId, $type, $name));
-    }
-
     private function dependencyNode(string $interfaceId, DependencyInterface $dependency, Graph $graph, bool $isTargetBinding) : void
     {
         $newInstance = ($this->prop)($dependency, 'newInstance');
         $class = ($this->prop)($newInstance, 'class');
         $classId = $this->getClassId($class);
-        $nodes[] = new ClassNode($classId, $class, ['construct' => null]);
         if (! $isTargetBinding) {
             $graph->addArrow(new ToClass($interfaceId, $classId));
         }

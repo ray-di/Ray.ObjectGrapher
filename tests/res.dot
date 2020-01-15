@@ -191,12 +191,21 @@ c_BEAR_Resource_UriFactory [style=dashed, margin=0.02, label=
 </td>
 </tr>
 </table>>, shape=box]
+t_BEAR_Resource_SchemeCollectionInterface_ [style=dashed, margin=0.02, label=
+<<table cellspacing="0" cellpadding="5" cellborder="0" border="0">
+<tr>
+<td align="left" port="header" bgcolor="#ffffff">
+<font point-size="11" color="#333333">BEAR\\Resource<br align="left"/></font>
+<font color="#000000">SchemeCollectionInterface<br align="left"/></font>
+</td>
+</tr>
+</table>>, shape=box]
 c_BEAR_Resource_Factory [style=solid, margin=0.02, label=
 <<table cellspacing="0" cellpadding="5" cellborder="1" border="0">
 <tr>
     <td align="left" port="header" bgcolor="#000000"><font color="grey" point-size="12">BEAR\\Resource<br align="left"/></font><font color="#ffffff">Factory<br align="left"/></font></td>
 </tr>
-<tr><td align="left" port="p_BEAR_Resource_Factory_construct">&lt;construct&gt;</td></tr>
+<tr><td align="left" port="p_BEAR_Resource_Factory_construct">&lt;construct&gt;</td></tr><tr><td align="left" port="p_BEAR_Resource_Factory_setSchemeCollection">&lt;setSchemeCollection&gt;</td></tr>
 </table>>, shape=box]
 t_BEAR_Resource_SchemeCollectionInterface_ [style=dashed, margin=0.02, label=
 <<table cellspacing="0" cellpadding="5" cellborder="0" border="0">
@@ -571,6 +580,7 @@ c_BEAR_Resource_Linker:p_BEAR_Resource_Linker_construct:e -> t_BEAR_Resource_Fac
 t_BEAR_Resource_FactoryInterface_ -> c_BEAR_Resource_Factory [style=dashed, arrowtail=none, arrowhead=onormal]
 c_BEAR_Resource_Factory:p_BEAR_Resource_Factory_construct:e -> t_BEAR_Resource_SchemeCollectionInterface_ [style=solid, arrowtail=none, arrowhead=onormal]
 c_BEAR_Resource_Factory:p_BEAR_Resource_Factory_construct:e -> c_BEAR_Resource_UriFactory [style=solid, arrowtail=none, arrowhead=onormal]
+c_BEAR_Resource_Factory:p_BEAR_Resource_Factory_setSchemeCollection:e -> t_BEAR_Resource_SchemeCollectionInterface_ [style=solid, arrowtail=none, arrowhead=onormal]
 c_BEAR_Resource_Module_SchemeCollectionProvider:p_BEAR_Resource_Module_SchemeCollectionProvider_construct:e -> t__BEAR_Resource_Annotation_AppName [style=solid, arrowtail=none, arrowhead=onormal]
 c_BEAR_Resource_Module_SchemeCollectionProvider:p_BEAR_Resource_Module_SchemeCollectionProvider_construct:e -> t_Ray_Di_InjectorInterface_ [style=solid, arrowtail=none, arrowhead=onormal]
 t_BEAR_Resource_SchemeCollectionInterface_ -> c_BEAR_Resource_Module_SchemeCollectionProvider [style=dashed, arrowtail=none, arrowhead=onormalonormal]

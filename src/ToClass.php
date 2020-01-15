@@ -6,6 +6,9 @@ namespace Ray\ObjectGrapher;
 
 final class ToClass implements ArrowInterface
 {
+    /**
+     * @var array<bool>
+     */
     public static $index;
 
     /**

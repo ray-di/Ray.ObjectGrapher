@@ -9,14 +9,14 @@ final class Graph
     /**
      * Object Nodes
      *
-     * @var array
+     * @var array<NodeInterface>
      */
     private $nodes;
 
     /**
      * Object Dependency Graph
      *
-     * @var array
+     * @var array<ArrowInterface>
      */
     private $arrows;
 

@@ -26,9 +26,17 @@ final class ClassNode implements NodeInterface
      */
     private $settersTable = '';
 
+    /**
+     * @param string        $id      ID
+     * @param string        $class   class
+     * @param array<string> $setters
+     *
+     * @throws \ReflectionException
+     */
     public function __construct(string $id, string $class, array $setters)
     {
         $this->id = $id;
+        assert(class_exists($class));
         $ref = new \ReflectionClass($class);
         $this->namespace = str_replace('\\', '\\\\', $ref->getNamespaceName());
         $this->class = $ref->getShortName();

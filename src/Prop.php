@@ -8,6 +8,11 @@ final class Prop
 {
     /**
      * Set object property accesible
+     *
+     * @param null|object $object
+     * @param string      $prop   property
+     *
+     * @return mixed|string
      */
     public function __invoke($object, string $prop)
     {

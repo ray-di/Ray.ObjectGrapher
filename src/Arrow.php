@@ -10,7 +10,7 @@ use Ray\Di\ProviderInterface;
 final class Arrow implements ArrowInterface
 {
     /**
-     * @var array
+     * @var array<bool>
      */
     public static $history;
 
@@ -42,9 +42,10 @@ final class Arrow implements ArrowInterface
         $this->arrowHead = $isProvider ? 'arrowhead=onormalonormal' : 'arrowhead=onormal';
         $index = $fromId . $toId . $toClass;
         if (isset(self::$history[$index])) {
-            echo $toClass;
+            // log duplicated (mostly @depracated) bindings (
+            // error_log(sprintf('from:%s to:%s class:%s index:%s ', $fromId, $toClass, $toClass, $index));
         }
-//        $this->isInvalid = isset(self::$history[$index]);
+        $this->isInvalid = isset(self::$history[$index]);
         self::$history[$index] = true;
     }
 
