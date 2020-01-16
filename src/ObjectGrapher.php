@@ -27,6 +27,7 @@ final class ObjectGrapher
 
     public function __invoke(AbstractModule $module) : string
     {
+        $this->init();
         $container = $module->getContainer()->getContainer();
         $graph = $this->getGraph($container);
 
@@ -175,5 +176,11 @@ EOT;
         $setterMethods = ($this->prop)($newInstance, 'setterMethods');
         $setters = $this->lineDependency($graph, $class, $arguments, $setterMethods, $classId);
         $graph->addNode(new ClassNode($classId, $class, $setters));
+    }
+
+    private function init() : void
+    {
+        Arrow::$history = [];
+        ToClass::$index = [];
     }
 }
