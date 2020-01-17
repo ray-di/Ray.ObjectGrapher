@@ -5,7 +5,7 @@ _Using ObjectGrapher to visualize Ray.Di applications_
 ![fake](https://user-images.githubusercontent.com/529021/72650686-866ec100-39c4-11ea-8b49-2d86d991dc6d.png)
 
 ## Grapher
-When you've written a sophisticated application, Ray.Di's rich introspection API can describe the object graph in detail. The built-in grapher extension exposes this data as an easily understandable visualization. It can show the bindings and dependencies from several classes in a complex application in a unified diagram.
+When you've written a sophisticated application, [Ray.Di](https://github.com/ray-di/Ray.Di)'s rich introspection API can describe the object graph in detail. This grapher exposes this data as an easily understandable visualization. It can show the bindings and dependencies from several classes in a complex application in a unified diagram.
 
 ## Installation
 You can install the Annotation component with composer:
