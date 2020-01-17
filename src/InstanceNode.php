@@ -22,13 +22,18 @@ final class InstanceNode implements NodeInterface
     /**
      * @var string
      */
+    private $type;
+
+    /**
+     * @var string
+     */
     private $named;
 
     public function __construct(string $id, string $interface, string $named, Instance $instance)
     {
         $this->id = $id;
         $this->interface = htmlspecialchars(str_replace('\\', '\\\\', $interface));
-        $this->named = $named ? "@<font color=\"#000000\" point-size=\"10\">{$named}<br align=\"left\"/></font>" : '';
+        $this->named = $named ? /* @lang html */ "@<font color=\"#000000\" point-size=\"10\">{$named}<br align=\"left\"/></font>" : '';
         $this->type = mb_strimwidth(addslashes((string) $instance), 0, 48, '..');
     }
 

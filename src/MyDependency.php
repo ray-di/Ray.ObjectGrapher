@@ -21,7 +21,7 @@ final class MyDependency
     public $classId;
 
     /**
-     * @var Arguments
+     * @var null|Arguments
      */
     public $arguments;
 

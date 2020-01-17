@@ -142,7 +142,7 @@ final class ObjectGrapher
         $dependencyId = ($this->dependencyId)($type, $name);
         $this->graph->addArrow(new Arrow($classPort, $dependencyId, $type));
         if (class_exists($type)) {
-            $this->addClassNode($dependencyIndex, $type);
+            $this->addClassNode($dependencyIndex);
 
             return;
         }
