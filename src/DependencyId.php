@@ -13,6 +13,6 @@ final class DependencyId
         }
         $snakeName = new SnakeName;
 
-        return sprintf('t_%s_%s', ($snakeName)($interace), ($snakeName)($name));
+        return sprintf('dependency_%s_%s', ($snakeName)($interace), ($snakeName)($name));
     }
 }

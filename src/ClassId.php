@@ -8,6 +8,6 @@ final class ClassId
 {
     public function __invoke(string $class) : string
     {
-        return 'c_' . (new SnakeName)($class);
+        return 'class_' . (new SnakeName)($class);
     }
 }
