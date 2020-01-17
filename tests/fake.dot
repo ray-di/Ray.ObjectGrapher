@@ -1,122 +1,30 @@
 digraph injector {
 graph [rankdir=TB];
-t_Ray_ObjectGrapher_LoggerInterface_ [style=dashed, margin=0.02, label=
-<<table cellspacing="0" cellpadding="5" cellborder="0" border="0">
-<tr>
-<td align="left" port="header" bgcolor="#ffffff">
-<font point-size="11" color="#333333">Ray\\ObjectGrapher<br align="left"/></font>
-<font color="#000000">LoggerInterface<br align="left"/></font>
-</td>
-</tr>
-</table>>, shape=box]
-t_Ray_ObjectGrapher_PdoInterface_ [style=dashed, margin=0.02, label=
-<<table cellspacing="0" cellpadding="5" cellborder="0" border="0">
-<tr>
-<td align="left" port="header" bgcolor="#ffffff">
-<font point-size="11" color="#333333">Ray\\ObjectGrapher<br align="left"/></font>
-<font color="#000000">PdoInterface<br align="left"/></font>
-</td>
-</tr>
-</table>>, shape=box]
-t_Ray_ObjectGrapher_FooInterface_ [style=dashed, margin=0.02, label=
-<<table cellspacing="0" cellpadding="5" cellborder="0" border="0">
-<tr>
-<td align="left" port="header" bgcolor="#ffffff">
-<font point-size="11" color="#333333">Ray\\ObjectGrapher<br align="left"/></font>
-<font color="#000000">FooInterface<br align="left"/></font>
-</td>
-</tr>
-</table>>, shape=box]
-c_Ray_ObjectGrapher_DatabaseLogger [style=solid, margin=0.02, label=
-<<table cellspacing="0" cellpadding="5" cellborder="1" border="0">
-<tr>
-    <td align="left" port="header" bgcolor="#000000"><font color="grey" point-size="12">Ray\\ObjectGrapher<br align="left"/></font><font color="#ffffff">DatabaseLogger<br align="left"/></font></td>
-</tr>
-<tr><td align="left" port="p_Ray_ObjectGrapher_DatabaseLogger_construct">&lt;construct&gt;</td></tr><tr><td align="left" port="p_Ray_ObjectGrapher_DatabaseLogger_setFoo">&lt;setFoo&gt;</td></tr>
-</table>>, shape=box]
-t_Ray_ObjectGrapher_PdoInterface_ [style=dashed, margin=0.02, label=
-<<table cellspacing="0" cellpadding="5" cellborder="0" border="0">
-<tr>
-<td align="left" port="header" bgcolor="#ffffff">
-<font point-size="11" color="#333333">Ray\\ObjectGrapher<br align="left"/></font>
-<font color="#000000">PdoInterface<br align="left"/></font>
-</td>
-</tr>
-</table>>, shape=box]
-t__dsn [style=dashed, margin=0.02, label=
-<<table cellspacing="0" cellpadding="5" cellborder="0" border="0">
-<tr>
-<td align="left" port="header" bgcolor="#aaaaaa"><font color="#000000" point-size="10">@dsn<br align="left"/></font>
-<font point-size="11" color="#333333"><br align="left"/></font>
-<font color="#000000">instance<br align="left"/></font>
-</td>
-</tr>
-</table>>, shape=box]
-t__id [style=dashed, margin=0.02, label=
-<<table cellspacing="0" cellpadding="5" cellborder="0" border="0">
-<tr>
-<td align="left" port="header" bgcolor="#aaaaaa"><font color="#000000" point-size="10">@id<br align="left"/></font>
-<font point-size="11" color="#333333"><br align="left"/></font>
-<font color="#000000">instance<br align="left"/></font>
-</td>
-</tr>
-</table>>, shape=box]
-t__pass [style=dashed, margin=0.02, label=
-<<table cellspacing="0" cellpadding="5" cellborder="0" border="0">
-<tr>
-<td align="left" port="header" bgcolor="#aaaaaa"><font color="#000000" point-size="10">@pass<br align="left"/></font>
-<font point-size="11" color="#333333"><br align="left"/></font>
-<font color="#000000">instance<br align="left"/></font>
-</td>
-</tr>
-</table>>, shape=box]
-t_Ray_ObjectGrapher_FooInterface_ [style=dashed, margin=0.02, label=
-<<table cellspacing="0" cellpadding="5" cellborder="0" border="0">
-<tr>
-<td align="left" port="header" bgcolor="#ffffff">
-<font point-size="11" color="#333333">Ray\\ObjectGrapher<br align="left"/></font>
-<font color="#000000">FooInterface<br align="left"/></font>
-</td>
-</tr>
-</table>>, shape=box]
-c_Ray_ObjectGrapher_PdoProvider [style=solid, margin=0.02, label=<<table cellspacing="0" cellpadding="5" cellborder="1" border="0"><tr><td align="left" port="header" bgcolor="#aaaaaa"><font color="#ffffff">Ray\\ObjectGrapher\\PdoProvider<br align="left"/></font></td></tr>
-<tr><td align="left" port="p_Ray_ObjectGrapher_PdoProvider_construct">&lt;construct&gt;</td></tr><tr><td align="left" port="p_Ray_ObjectGrapher_PdoProvider_setFoo">&lt;setFoo&gt;</td></tr>
-</table>>, shape=box]
-c_Ray_ObjectGrapher_PdoProvider [style=solid, margin=0.02, label=
-<<table cellspacing="0" cellpadding="5" cellborder="1" border="0">
-<tr>
-    <td align="left" port="header" bgcolor="#000000"><font color="grey" point-size="12">Ray\\ObjectGrapher<br align="left"/></font><font color="#ffffff">PdoProvider<br align="left"/></font></td>
-</tr>
-<tr><td align="left" port="p_Ray_ObjectGrapher_PdoProvider_construct">&lt;construct&gt;</td></tr><tr><td align="left" port="p_Ray_ObjectGrapher_PdoProvider_setFoo">&lt;setFoo&gt;</td></tr>
-</table>>, shape=box]
-t__dsn [style=dashed, margin=0.02, label=<<table cellspacing="0" cellpadding="5" cellborder="0" border="0"><tr><td align="left" port="header" bgcolor="#aaaaaa">@<font color="#000000" point-size="10">dsn<br align="left"/></font><font color="#000000">Instance<br align="left"/></font></td></tr></table>>, shape=box]
-t__id [style=dashed, margin=0.02, label=<<table cellspacing="0" cellpadding="5" cellborder="0" border="0"><tr><td align="left" port="header" bgcolor="#aaaaaa">@<font color="#000000" point-size="10">id<br align="left"/></font><font color="#000000">Instance<br align="left"/></font></td></tr></table>>, shape=box]
-t__pass [style=dashed, margin=0.02, label=<<table cellspacing="0" cellpadding="5" cellborder="0" border="0"><tr><td align="left" port="header" bgcolor="#aaaaaa">@<font color="#000000" point-size="10">pass<br align="left"/></font><font color="#000000">Instance<br align="left"/></font></td></tr></table>>, shape=box]
-t_Ray_ObjectGrapher_FooInterface_ [style=dashed, margin=0.02, label=
-<<table cellspacing="0" cellpadding="5" cellborder="0" border="0">
-<tr>
-<td align="left" port="header" bgcolor="#ffffff">
-<font point-size="11" color="#333333">Ray\\ObjectGrapher<br align="left"/></font>
-<font color="#000000">FooInterface<br align="left"/></font>
-</td>
-</tr>
-</table>>, shape=box]
-c_Ray_ObjectGrapher_Foo [style=solid, margin=0.02, label=
-<<table cellspacing="0" cellpadding="5" cellborder="1" border="0">
-<tr>
-    <td align="left" port="header" bgcolor="#000000"><font color="grey" point-size="12">Ray\\ObjectGrapher<br align="left"/></font><font color="#ffffff">Foo<br align="left"/></font></td>
-</tr>
+dependency_Ray_ObjectGrapher_LoggerInterface_ [style=dashed, margin=0.02, label=<<table cellspacing="0" cellpadding="5" cellborder="0" border="0"><tr><td align="left" port="header" bgcolor="#ffffff"><font point-size="11" color="#333333">Ray\\ObjectGrapher<br align="left"/></font><font color="#000000">LoggerInterface<br align="left"/></font></td></tr></table>>, shape=box]
+dependency_Ray_ObjectGrapher_PdoInterface_ [style=dashed, margin=0.02, label=<<table cellspacing="0" cellpadding="5" cellborder="0" border="0"><tr><td align="left" port="header" bgcolor="#ffffff"><font point-size="11" color="#333333">Ray\\ObjectGrapher<br align="left"/></font><font color="#000000">PdoInterface<br align="left"/></font></td></tr></table>>, shape=box]
+dependency_Ray_ObjectGrapher_FooInterface_ [style=dashed, margin=0.02, label=<<table cellspacing="0" cellpadding="5" cellborder="0" border="0"><tr><td align="left" port="header" bgcolor="#ffffff"><font point-size="11" color="#333333">Ray\\ObjectGrapher<br align="left"/></font><font color="#000000">FooInterface<br align="left"/></font></td></tr></table>>, shape=box]
+class_Ray_ObjectGrapher_DatabaseLogger [style=solid, margin=0.02, label=<<table cellspacing="0" cellpadding="5" cellborder="1" border="0">    <tr>        <td align="left" port="header" bgcolor="#000000"><font color="grey" point-size="12">Ray\\ObjectGrapher<br align="left"/></font><font color="#ffffff">DatabaseLogger<br align="left"/></font></td>    </tr><tr><td align="left" port="p_Ray_ObjectGrapher_DatabaseLogger_construct">&lt;construct&gt;</td></tr><tr><td align="left" port="p_Ray_ObjectGrapher_DatabaseLogger_setFoo">&lt;setFoo&gt;</td></tr></table>>, shape=box]
+dependency_Ray_ObjectGrapher_PdoInterface_ [style=dashed, margin=0.02, label=<<table cellspacing="0" cellpadding="5" cellborder="0" border="0"><tr><td align="left" port="header" bgcolor="#ffffff"><font point-size="11" color="#333333">Ray\\ObjectGrapher<br align="left"/></font><font color="#000000">PdoInterface<br align="left"/></font></td></tr></table>>, shape=box]
+dependency__dsn [style=dashed, margin=0.02, label=<<table cellspacing="0" cellpadding="5" cellborder="0" border="0"><tr><td align="left" port="header" bgcolor="#aaaaaa"><font color="#000000" point-size="10">@dsn<br align="left"/></font><font point-size="11" color="#333333"><br align="left"/></font><font color="#000000">instance<br align="left"/></font></td></tr></table>>, shape=box]
+dependency__id [style=dashed, margin=0.02, label=<<table cellspacing="0" cellpadding="5" cellborder="0" border="0"><tr><td align="left" port="header" bgcolor="#aaaaaa"><font color="#000000" point-size="10">@id<br align="left"/></font><font point-size="11" color="#333333"><br align="left"/></font><font color="#000000">instance<br align="left"/></font></td></tr></table>>, shape=box]
+dependency__pass [style=dashed, margin=0.02, label=<<table cellspacing="0" cellpadding="5" cellborder="0" border="0"><tr><td align="left" port="header" bgcolor="#aaaaaa"><font color="#000000" point-size="10">@pass<br align="left"/></font><font point-size="11" color="#333333"><br align="left"/></font><font color="#000000">instance<br align="left"/></font></td></tr></table>>, shape=box]
+dependency_Ray_ObjectGrapher_FooInterface_ [style=dashed, margin=0.02, label=<<table cellspacing="0" cellpadding="5" cellborder="0" border="0"><tr><td align="left" port="header" bgcolor="#ffffff"><font point-size="11" color="#333333">Ray\\ObjectGrapher<br align="left"/></font><font color="#000000">FooInterface<br align="left"/></font></td></tr></table>>, shape=box]
+class_Ray_ObjectGrapher_PdoProvider [style=solid, margin=0.02, label=<<table cellspacing="0" cellpadding="5" cellborder="1" border="0"><tr><td align="left" port="header" bgcolor="#aaaaaa"><font color="#ffffff">Ray\\ObjectGrapher\\PdoProvider<br align="left"/></font></td></tr><tr><td align="left" port="p_Ray_ObjectGrapher_PdoProvider_construct">&lt;construct&gt;</td></tr><tr><td align="left" port="p_Ray_ObjectGrapher_PdoProvider_setFoo">&lt;setFoo&gt;</td></tr></table>>, shape=box]
+class_Ray_ObjectGrapher_PdoProvider [style=solid, margin=0.02, label=<<table cellspacing="0" cellpadding="5" cellborder="1" border="0">    <tr>        <td align="left" port="header" bgcolor="#000000"><font color="grey" point-size="12">Ray\\ObjectGrapher<br align="left"/></font><font color="#ffffff">PdoProvider<br align="left"/></font></td>    </tr><tr><td align="left" port="p_Ray_ObjectGrapher_PdoProvider_construct">&lt;construct&gt;</td></tr><tr><td align="left" port="p_Ray_ObjectGrapher_PdoProvider_setFoo">&lt;setFoo&gt;</td></tr></table>>, shape=box]
+dependency__dsn [style=dashed, margin=0.02, label=<<table cellspacing="0" cellpadding="5" cellborder="0" border="0">    <tr>        <td align="left" port="header" bgcolor="#aaaaaa">@<font color="#000000" point-size="10">dsn<br align="left"/></font>            <font point-size="11" color="#333333"><br align="left"/></font>            <font color="#000000">instance (string) <br align="left"/></font>        </td></tr></table>>, shape=box]
+dependency__id [style=dashed, margin=0.02, label=<<table cellspacing="0" cellpadding="5" cellborder="0" border="0">    <tr>        <td align="left" port="header" bgcolor="#aaaaaa">@<font color="#000000" point-size="10">id<br align="left"/></font>            <font point-size="11" color="#333333"><br align="left"/></font>            <font color="#000000">instance (string) <br align="left"/></font>        </td></tr></table>>, shape=box]
+dependency__pass [style=dashed, margin=0.02, label=<<table cellspacing="0" cellpadding="5" cellborder="0" border="0">    <tr>        <td align="left" port="header" bgcolor="#aaaaaa">@<font color="#000000" point-size="10">pass<br align="left"/></font>            <font point-size="11" color="#333333"><br align="left"/></font>            <font color="#000000">instance (string) <br align="left"/></font>        </td></tr></table>>, shape=box]
+dependency_Ray_ObjectGrapher_FooInterface_ [style=dashed, margin=0.02, label=<<table cellspacing="0" cellpadding="5" cellborder="0" border="0"><tr><td align="left" port="header" bgcolor="#ffffff"><font point-size="11" color="#333333">Ray\\ObjectGrapher<br align="left"/></font><font color="#000000">FooInterface<br align="left"/></font></td></tr></table>>, shape=box]
+class_Ray_ObjectGrapher_Foo [style=solid, margin=0.02, label=<<table cellspacing="0" cellpadding="5" cellborder="1" border="0">    <tr>        <td align="left" port="header" bgcolor="#000000"><font color="grey" point-size="12">Ray\\ObjectGrapher<br align="left"/></font><font color="#ffffff">Foo<br align="left"/></font></td>    </tr></table>>, shape=box]
 
-</table>>, shape=box]
-
-t_Ray_ObjectGrapher_LoggerInterface_ -> c_Ray_ObjectGrapher_DatabaseLogger [style=dashed, arrowtail=none, arrowhead=onormal]
-c_Ray_ObjectGrapher_DatabaseLogger:p_Ray_ObjectGrapher_DatabaseLogger_construct:e -> t_Ray_ObjectGrapher_PdoInterface_ [style=solid, arrowtail=none, arrowhead=onormal]
-c_Ray_ObjectGrapher_DatabaseLogger:p_Ray_ObjectGrapher_DatabaseLogger_setFoo:e -> t_Ray_ObjectGrapher_FooInterface_ [style=solid, arrowtail=none, arrowhead=onormal]
-c_Ray_ObjectGrapher_PdoProvider:p_Ray_ObjectGrapher_PdoProvider_construct:e -> t__dsn [style=solid, arrowtail=none, arrowhead=onormal]
-c_Ray_ObjectGrapher_PdoProvider:p_Ray_ObjectGrapher_PdoProvider_construct:e -> t__id [style=solid, arrowtail=none, arrowhead=onormal]
-c_Ray_ObjectGrapher_PdoProvider:p_Ray_ObjectGrapher_PdoProvider_construct:e -> t__pass [style=solid, arrowtail=none, arrowhead=onormal]
-c_Ray_ObjectGrapher_PdoProvider:p_Ray_ObjectGrapher_PdoProvider_setFoo:e -> t_Ray_ObjectGrapher_FooInterface_ [style=solid, arrowtail=none, arrowhead=onormal]
-t_Ray_ObjectGrapher_PdoInterface_ -> c_Ray_ObjectGrapher_PdoProvider [style=dashed, arrowtail=none, arrowhead=onormalonormal]
-t_Ray_ObjectGrapher_FooInterface_ -> c_Ray_ObjectGrapher_Foo [style=dashed, arrowtail=none, arrowhead=onormal]
+dependency_Ray_ObjectGrapher_LoggerInterface_ -> class_Ray_ObjectGrapher_DatabaseLogger [style=dashed, arrowtail=none, arrowhead=onormal]
+class_Ray_ObjectGrapher_DatabaseLogger:p_Ray_ObjectGrapher_DatabaseLogger_construct:e -> dependency_Ray_ObjectGrapher_PdoInterface_ [style=solid, arrowtail=none, arrowhead=onormal]
+class_Ray_ObjectGrapher_DatabaseLogger:p_Ray_ObjectGrapher_DatabaseLogger_setFoo:e -> dependency_Ray_ObjectGrapher_FooInterface_ [style=solid, arrowtail=none, arrowhead=onormal]
+class_Ray_ObjectGrapher_PdoProvider:p_Ray_ObjectGrapher_PdoProvider_construct:e -> dependency__dsn [style=solid, arrowtail=none, arrowhead=onormal]
+class_Ray_ObjectGrapher_PdoProvider:p_Ray_ObjectGrapher_PdoProvider_construct:e -> dependency__id [style=solid, arrowtail=none, arrowhead=onormal]
+class_Ray_ObjectGrapher_PdoProvider:p_Ray_ObjectGrapher_PdoProvider_construct:e -> dependency__pass [style=solid, arrowtail=none, arrowhead=onormal]
+class_Ray_ObjectGrapher_PdoProvider:p_Ray_ObjectGrapher_PdoProvider_setFoo:e -> dependency_Ray_ObjectGrapher_FooInterface_ [style=solid, arrowtail=none, arrowhead=onormal]
+dependency_Ray_ObjectGrapher_PdoInterface_ -> class_Ray_ObjectGrapher_PdoProvider [style=dashed, arrowtail=none, arrowhead=onormalonormal]
+dependency_Ray_ObjectGrapher_FooInterface_ -> class_Ray_ObjectGrapher_Foo [style=dashed, arrowtail=none, arrowhead=onormal]
 
 }

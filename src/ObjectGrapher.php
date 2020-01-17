@@ -67,8 +67,7 @@ final class ObjectGrapher
 
     private function init() : void
     {
-        Arrow::$history = [];
-        ToClass::$index = [];
+        Arrow::$history = ToClass::$index = ClassNode::$ids = [];
     }
 
     private function setGraph(string $type, string $name, DependencyInterface $dependency) : void
