@@ -71,13 +71,7 @@ t__BEAR_Resource_Annotation_ContextScheme [style=dashed, margin=0.02, label=
 </td>
 </tr>
 </table>>, shape=box]
-c_BEAR_Resource_UriFactory [style=solid, margin=0.02, label=
-<<table cellspacing="0" cellpadding="5" cellborder="1" border="0">
-<tr>
-    <td align="left" port="header" bgcolor="#000000"><font color="grey" point-size="12">BEAR\\Resource<br align="left"/></font><font color="#ffffff">UriFactory<br align="left"/></font></td>
-</tr>
-<tr><td align="left" port="p_BEAR_Resource_UriFactory_construct">&lt;construct&gt;</td></tr>
-</table>>, shape=box]
+
 c_BEAR_Resource_Resource [style=solid, margin=0.02, label=
 <<table cellspacing="0" cellpadding="5" cellborder="1" border="0">
 <tr>
@@ -205,13 +199,7 @@ t__BEAR_Resource_Annotation_ContextScheme [style=dashed, margin=0.02, label=
 </td>
 </tr>
 </table>>, shape=box]
-c_BEAR_Resource_UriFactory [style=solid, margin=0.02, label=
-<<table cellspacing="0" cellpadding="5" cellborder="1" border="0">
-<tr>
-    <td align="left" port="header" bgcolor="#000000"><font color="grey" point-size="12">BEAR\\Resource<br align="left"/></font><font color="#ffffff">UriFactory<br align="left"/></font></td>
-</tr>
-<tr><td align="left" port="p_BEAR_Resource_UriFactory_construct">&lt;construct&gt;</td></tr>
-</table>>, shape=box]
+
 t_BEAR_Resource_SchemeCollectionInterface_ [style=dashed, margin=0.02, label=
 <<table cellspacing="0" cellpadding="5" cellborder="0" border="0">
 <tr>
@@ -424,13 +412,7 @@ t__json_schema_dir [style=dashed, margin=0.02, label=
 </td>
 </tr>
 </table>>, shape=box]
-c_BEAR_Resource_OptionsMethods [style=solid, margin=0.02, label=
-<<table cellspacing="0" cellpadding="5" cellborder="1" border="0">
-<tr>
-    <td align="left" port="header" bgcolor="#000000"><font color="grey" point-size="12">BEAR\\Resource<br align="left"/></font><font color="#ffffff">OptionsMethods<br align="left"/></font></td>
-</tr>
-<tr><td align="left" port="p_BEAR_Resource_OptionsMethods_construct">&lt;construct&gt;</td></tr>
-</table>>, shape=box]
+
 t_BEAR_Resource_NamedParamMetasInterface_ [style=dashed, margin=0.02, label=
 <<table cellspacing="0" cellpadding="5" cellborder="0" border="0">
 <tr>
@@ -474,13 +456,7 @@ t_BEAR_Resource_RenderInterface_options [style=dashed, margin=0.02, label=
 </td>
 </tr>
 </table>>, shape=box]
-c_BEAR_Resource_ExtraMethodInvoker [style=solid, margin=0.02, label=
-<<table cellspacing="0" cellpadding="5" cellborder="1" border="0">
-<tr>
-    <td align="left" port="header" bgcolor="#000000"><font color="grey" point-size="12">BEAR\\Resource<br align="left"/></font><font color="#ffffff">ExtraMethodInvoker<br align="left"/></font></td>
-</tr>
-<tr><td align="left" port="p_BEAR_Resource_ExtraMethodInvoker_construct">&lt;construct&gt;</td></tr>
-</table>>, shape=box]
+
 t_BEAR_Resource_ReverseLinkInterface_ [style=dashed, margin=0.02, label=
 <<table cellspacing="0" cellpadding="5" cellborder="0" border="0">
 <tr>

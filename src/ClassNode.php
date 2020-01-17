@@ -7,6 +7,11 @@ namespace Ray\ObjectGrapher;
 final class ClassNode implements NodeInterface
 {
     /**
+     * @var array<string>
+     */
+    public static $ids = [];
+
+    /**
      * @var string
      */
     private $id;
@@ -27,6 +32,11 @@ final class ClassNode implements NodeInterface
     private $settersTable = '';
 
     /**
+     * @var bool
+     */
+    private $invalid = false;
+
+    /**
      * @param string        $id      ID
      * @param string        $class   class
      * @param array<string> $setters
@@ -35,6 +45,16 @@ final class ClassNode implements NodeInterface
      */
     public function __construct(string $id, string $class, array $setters)
     {
+        if (in_array(
+            $id,
+            self::$ids,
+            true
+        )) {
+            $this->invalid = true;
+
+            return;
+        }
+        self::$ids[] = $id;
         $this->id = $id;
         assert(class_exists($class));
         $ref = new \ReflectionClass($class);
@@ -48,7 +68,7 @@ final class ClassNode implements NodeInterface
     public function __toString()
     {
         return /* @lang html */
-            <<< EOT
+            $this->invalid ? '' : <<< EOT
 {$this->id} [style=solid, margin=0.02, label=
 <<table cellspacing="0" cellpadding="5" cellborder="1" border="0">
 <tr>

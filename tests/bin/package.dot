@@ -337,13 +337,7 @@ t_BEAR_Resource_ResourceInterface_ [style=dashed, margin=0.02, label=
 </td>
 </tr>
 </table>>, shape=box]
-c_BEAR_QueryRepository_RefreshAnnotatedCommand [style=solid, margin=0.02, label=
-<<table cellspacing="0" cellpadding="5" cellborder="1" border="0">
-<tr>
-    <td align="left" port="header" bgcolor="#000000"><font color="grey" point-size="12">BEAR\\QueryRepository<br align="left"/></font><font color="#ffffff">RefreshAnnotatedCommand<br align="left"/></font></td>
-</tr>
-<tr><td align="left" port="p_BEAR_QueryRepository_RefreshAnnotatedCommand_construct">&lt;construct&gt;</td></tr>
-</table>>, shape=box]
+
 t_BEAR_QueryRepository_QueryRepositoryInterface_ [style=dashed, margin=0.02, label=
 <<table cellspacing="0" cellpadding="5" cellborder="0" border="0">
 <tr>
@@ -426,13 +420,7 @@ t_BEAR_QueryRepository_ResourceStorageInterface_ [style=dashed, margin=0.02, lab
 </td>
 </tr>
 </table>>, shape=box]
-c_BEAR_QueryRepository_HttpCache [style=solid, margin=0.02, label=
-<<table cellspacing="0" cellpadding="5" cellborder="1" border="0">
-<tr>
-    <td align="left" port="header" bgcolor="#000000"><font color="grey" point-size="12">BEAR\\QueryRepository<br align="left"/></font><font color="#ffffff">HttpCache<br align="left"/></font></td>
-</tr>
-<tr><td align="left" port="p_BEAR_QueryRepository_HttpCache_construct">&lt;construct&gt;</td></tr>
-</table>>, shape=box]
+
 t_BEAR_Sunday_Extension_Router_RouterInterface_ [style=dashed, margin=0.02, label=
 <<table cellspacing="0" cellpadding="5" cellborder="0" border="0">
 <tr>
@@ -494,13 +482,7 @@ t_BEAR_Package_Provide_Router_HttpMethodParamsInterface_ [style=dashed, margin=0
 </td>
 </tr>
 </table>>, shape=box]
-c_BEAR_Package_Provide_Router_WebRouter [style=solid, margin=0.02, label=
-<<table cellspacing="0" cellpadding="5" cellborder="1" border="0">
-<tr>
-    <td align="left" port="header" bgcolor="#000000"><font color="grey" point-size="12">BEAR\\Package\\Provide\\Router<br align="left"/></font><font color="#ffffff">WebRouter<br align="left"/></font></td>
-</tr>
-<tr><td align="left" port="p_BEAR_Package_Provide_Router_WebRouter_construct">&lt;construct&gt;</td></tr>
-</table>>, shape=box]
+
 t_BEAR_Package_Provide_Router_HttpMethodParamsInterface_ [style=dashed, margin=0.02, label=
 <<table cellspacing="0" cellpadding="5" cellborder="0" border="0">
 <tr>
@@ -578,13 +560,7 @@ c_BEAR_AppMeta_AbstractAppMeta [style=dashed, margin=0.02, label=
 </td>
 </tr>
 </table>>, shape=box]
-c_BEAR_Package_Provide_Error_ErrorLogger [style=solid, margin=0.02, label=
-<<table cellspacing="0" cellpadding="5" cellborder="1" border="0">
-<tr>
-    <td align="left" port="header" bgcolor="#000000"><font color="grey" point-size="12">BEAR\\Package\\Provide\\Error<br align="left"/></font><font color="#ffffff">ErrorLogger<br align="left"/></font></td>
-</tr>
-<tr><td align="left" port="p_BEAR_Package_Provide_Error_ErrorLogger_construct">&lt;construct&gt;</td></tr>
-</table>>, shape=box]
+
 t_BEAR_Package_Provide_Error_ErrorPageFactoryInterface_ [style=dashed, margin=0.02, label=
 <<table cellspacing="0" cellpadding="5" cellborder="0" border="0">
 <tr>
@@ -782,13 +758,7 @@ t_BEAR_Resource_ResourceInterface_ [style=dashed, margin=0.02, label=
 </td>
 </tr>
 </table>>, shape=box]
-c_BEAR_Package_Provide_Representation_CreatedResourceRenderer [style=solid, margin=0.02, label=
-<<table cellspacing="0" cellpadding="5" cellborder="1" border="0">
-<tr>
-    <td align="left" port="header" bgcolor="#000000"><font color="grey" point-size="12">BEAR\\Package\\Provide\\Representation<br align="left"/></font><font color="#ffffff">CreatedResourceRenderer<br align="left"/></font></td>
-</tr>
-<tr><td align="left" port="p_BEAR_Package_Provide_Representation_CreatedResourceRenderer_construct">&lt;construct&gt;</td></tr>
-</table>>, shape=box]
+
 c_BEAR_Package_Provide_Representation_CreatedResourceInterceptor [style=solid, margin=0.02, label=
 <<table cellspacing="0" cellpadding="5" cellborder="1" border="0">
 <tr>
@@ -805,13 +775,7 @@ t_Doctrine_Common_Cache_Cache_ [style=dashed, margin=0.02, label=
 </td>
 </tr>
 </table>>, shape=box]
-c_Doctrine_Common_Cache_ArrayCache [style=solid, margin=0.02, label=
-<<table cellspacing="0" cellpadding="5" cellborder="1" border="0">
-<tr>
-    <td align="left" port="header" bgcolor="#000000"><font color="grey" point-size="12">Doctrine\\Common\\Cache<br align="left"/></font><font color="#ffffff">ArrayCache<br align="left"/></font></td>
-</tr>
-<tr><td align="left" port="p_Doctrine_Common_Cache_ArrayCache_construct">&lt;construct&gt;</td></tr>
-</table>>, shape=box]
+
 t_Doctrine_Common_Cache_Cache_annotation_cache [style=dashed, margin=0.02, label=
 <<table cellspacing="0" cellpadding="5" cellborder="0" border="0">
 <tr>
@@ -821,13 +785,7 @@ t_Doctrine_Common_Cache_Cache_annotation_cache [style=dashed, margin=0.02, label
 </td>
 </tr>
 </table>>, shape=box]
-c_Doctrine_Common_Cache_ArrayCache [style=solid, margin=0.02, label=
-<<table cellspacing="0" cellpadding="5" cellborder="1" border="0">
-<tr>
-    <td align="left" port="header" bgcolor="#000000"><font color="grey" point-size="12">Doctrine\\Common\\Cache<br align="left"/></font><font color="#ffffff">ArrayCache<br align="left"/></font></td>
-</tr>
-<tr><td align="left" port="p_Doctrine_Common_Cache_ArrayCache_construct">&lt;construct&gt;</td></tr>
-</table>>, shape=box]
+
 t_Doctrine_Common_Annotations_Reader_annotation_reader [style=dashed, margin=0.02, label=
 <<table cellspacing="0" cellpadding="5" cellborder="0" border="0">
 <tr>
@@ -837,20 +795,8 @@ t_Doctrine_Common_Annotations_Reader_annotation_reader [style=dashed, margin=0.0
 </td>
 </tr>
 </table>>, shape=box]
-c_Doctrine_Common_Annotations_DocParser [style=solid, margin=0.02, label=
-<<table cellspacing="0" cellpadding="5" cellborder="1" border="0">
-<tr>
-    <td align="left" port="header" bgcolor="#000000"><font color="grey" point-size="12">Doctrine\\Common\\Annotations<br align="left"/></font><font color="#ffffff">DocParser<br align="left"/></font></td>
-</tr>
-<tr><td align="left" port="p_Doctrine_Common_Annotations_DocParser_construct">&lt;construct&gt;</td></tr>
-</table>>, shape=box]
-c_Doctrine_Common_Annotations_AnnotationReader [style=solid, margin=0.02, label=
-<<table cellspacing="0" cellpadding="5" cellborder="1" border="0">
-<tr>
-    <td align="left" port="header" bgcolor="#000000"><font color="grey" point-size="12">Doctrine\\Common\\Annotations<br align="left"/></font><font color="#ffffff">AnnotationReader<br align="left"/></font></td>
-</tr>
-<tr><td align="left" port="p_Doctrine_Common_Annotations_AnnotationReader_construct">&lt;construct&gt;</td></tr>
-</table>>, shape=box]
+
+
 t__BEAR_Resource_Annotation_ContextScheme [style=dashed, margin=0.02, label=
 <<table cellspacing="0" cellpadding="5" cellborder="0" border="0">
 <tr>
@@ -921,13 +867,7 @@ t__BEAR_Resource_Annotation_ContextScheme [style=dashed, margin=0.02, label=
 </td>
 </tr>
 </table>>, shape=box]
-c_BEAR_Resource_UriFactory [style=solid, margin=0.02, label=
-<<table cellspacing="0" cellpadding="5" cellborder="1" border="0">
-<tr>
-    <td align="left" port="header" bgcolor="#000000"><font color="grey" point-size="12">BEAR\\Resource<br align="left"/></font><font color="#ffffff">UriFactory<br align="left"/></font></td>
-</tr>
-<tr><td align="left" port="p_BEAR_Resource_UriFactory_construct">&lt;construct&gt;</td></tr>
-</table>>, shape=box]
+
 c_BEAR_Resource_Resource [style=solid, margin=0.02, label=
 <<table cellspacing="0" cellpadding="5" cellborder="1" border="0">
 <tr>
@@ -1055,13 +995,7 @@ t__BEAR_Resource_Annotation_ContextScheme [style=dashed, margin=0.02, label=
 </td>
 </tr>
 </table>>, shape=box]
-c_BEAR_Resource_UriFactory [style=solid, margin=0.02, label=
-<<table cellspacing="0" cellpadding="5" cellborder="1" border="0">
-<tr>
-    <td align="left" port="header" bgcolor="#000000"><font color="grey" point-size="12">BEAR\\Resource<br align="left"/></font><font color="#ffffff">UriFactory<br align="left"/></font></td>
-</tr>
-<tr><td align="left" port="p_BEAR_Resource_UriFactory_construct">&lt;construct&gt;</td></tr>
-</table>>, shape=box]
+
 t_BEAR_Resource_SchemeCollectionInterface_ [style=dashed, margin=0.02, label=
 <<table cellspacing="0" cellpadding="5" cellborder="0" border="0">
 <tr>
@@ -1224,13 +1158,7 @@ t__json_schema_dir [style=dashed, margin=0.02, label=
 </td>
 </tr>
 </table>>, shape=box]
-c_BEAR_Resource_OptionsMethods [style=solid, margin=0.02, label=
-<<table cellspacing="0" cellpadding="5" cellborder="1" border="0">
-<tr>
-    <td align="left" port="header" bgcolor="#000000"><font color="grey" point-size="12">BEAR\\Resource<br align="left"/></font><font color="#ffffff">OptionsMethods<br align="left"/></font></td>
-</tr>
-<tr><td align="left" port="p_BEAR_Resource_OptionsMethods_construct">&lt;construct&gt;</td></tr>
-</table>>, shape=box]
+
 t_BEAR_Resource_NamedParamMetasInterface_ [style=dashed, margin=0.02, label=
 <<table cellspacing="0" cellpadding="5" cellborder="0" border="0">
 <tr>
@@ -1274,13 +1202,7 @@ t_BEAR_Resource_RenderInterface_options [style=dashed, margin=0.02, label=
 </td>
 </tr>
 </table>>, shape=box]
-c_BEAR_Resource_ExtraMethodInvoker [style=solid, margin=0.02, label=
-<<table cellspacing="0" cellpadding="5" cellborder="1" border="0">
-<tr>
-    <td align="left" port="header" bgcolor="#000000"><font color="grey" point-size="12">BEAR\\Resource<br align="left"/></font><font color="#ffffff">ExtraMethodInvoker<br align="left"/></font></td>
-</tr>
-<tr><td align="left" port="p_BEAR_Resource_ExtraMethodInvoker_construct">&lt;construct&gt;</td></tr>
-</table>>, shape=box]
+
 t_BEAR_Resource_ReverseLinkInterface_ [style=dashed, margin=0.02, label=
 <<table cellspacing="0" cellpadding="5" cellborder="0" border="0">
 <tr>
