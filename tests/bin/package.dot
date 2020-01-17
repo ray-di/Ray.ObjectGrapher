@@ -1,6 +1,6 @@
 digraph injector {
 graph [rankdir=TB];
-class_BEAR_AppMeta_AbstractAppMeta [style=dashed, margin=0.02, label=<<table cellspacing="0" cellpadding="5" cellborder="0" border="0"><tr><td align="left" port="header" bgcolor="#aaaaaa">@<font color="#000000">Instance<br align="left"/></font></td></tr></table>>, shape=box]
+class_BEAR_AppMeta_AbstractAppMeta [style=solid, margin=0.02, label=<<table cellspacing="0" cellpadding="5" cellborder="0" border="0"><tr><td align="left" port="header" bgcolor="#aaaaaa"><font color="#000000">(object) BEAR\\AppMeta\\Meta<br align="left"/></font></td></tr></table>>, shape=box]
 dependency_BEAR_Sunday_Extension_Application_AppInterface_ [style=dashed, margin=0.02, label=
 <<table cellspacing="0" cellpadding="5" cellborder="0" border="0">
 <tr>
@@ -62,8 +62,8 @@ class_Ray_ObjectGrapher_Module_App [style=solid, margin=0.02, label=
 </tr>
 <tr><td align="left" port="p_Ray_ObjectGrapher_Module_App_construct">&lt;construct&gt;</td></tr>
 </table>>, shape=box]
-dependency__BEAR_Resource_Annotation_AppName [style=dashed, margin=0.02, label=<<table cellspacing="0" cellpadding="5" cellborder="0" border="0"><tr><td align="left" port="header" bgcolor="#aaaaaa">@<font color="#000000" point-size="10">BEAR\Resource\Annotation\AppName<br align="left"/></font><font color="#000000">Instance<br align="left"/></font></td></tr></table>>, shape=box]
-class_BEAR_QueryRepository_Expiry [style=dashed, margin=0.02, label=<<table cellspacing="0" cellpadding="5" cellborder="0" border="0"><tr><td align="left" port="header" bgcolor="#aaaaaa">@<font color="#000000">Instance<br align="left"/></font></td></tr></table>>, shape=box]
+dependency__BEAR_Resource_Annotation_AppName [style=solid, margin=0.02, label=<<table cellspacing="0" cellpadding="5" cellborder="0" border="0"><tr><td align="left" port="header" bgcolor="#aaaaaa">@<font color="#000000" point-size="10">BEAR\Resource\Annotation\AppName<br align="left"/></font><font color="#000000">(string) Ray\\ObjectGrapher<br align="left"/></font></td></tr></table>>, shape=box]
+class_BEAR_QueryRepository_Expiry [style=solid, margin=0.02, label=<<table cellspacing="0" cellpadding="5" cellborder="0" border="0"><tr><td align="left" port="header" bgcolor="#aaaaaa"><font color="#000000">(object) BEAR\\QueryRepository\\Expiry<br align="left"/></font></td></tr></table>>, shape=box]
 dependency_BEAR_QueryRepository_QueryRepositoryInterface_ [style=dashed, margin=0.02, label=
 <<table cellspacing="0" cellpadding="5" cellborder="0" border="0">
 <tr>
@@ -286,7 +286,7 @@ class_BEAR_QueryRepository_CommandsProvider [style=solid, margin=0.02, label=
 </tr>
 <tr><td align="left" port="p_BEAR_QueryRepository_CommandsProvider_construct">&lt;construct&gt;</td></tr>
 </table>>, shape=box]
-dependency__BEAR_RepositoryModule_Annotation_CacheVersion [style=dashed, margin=0.02, label=<<table cellspacing="0" cellpadding="5" cellborder="0" border="0"><tr><td align="left" port="header" bgcolor="#aaaaaa">@<font color="#000000" point-size="10">BEAR\RepositoryModule\Annotation\CacheVersion<br align="left"/></font><font color="#000000">Instance<br align="left"/></font></td></tr></table>>, shape=box]
+dependency__BEAR_RepositoryModule_Annotation_CacheVersion [style=solid, margin=0.02, label=<<table cellspacing="0" cellpadding="5" cellborder="0" border="0"><tr><td align="left" port="header" bgcolor="#aaaaaa">@<font color="#000000" point-size="10">BEAR\RepositoryModule\Annotation\CacheVersion<br align="left"/></font><font color="#000000">(string) <br align="left"/></font></td></tr></table>>, shape=box]
 class_BEAR_QueryRepository_RefreshInterceptor [style=solid, margin=0.02, label=
 <<table cellspacing="0" cellpadding="5" cellborder="1" border="0">
 <tr>
@@ -1169,7 +1169,7 @@ class_BEAR_Resource_EmbedInterceptor [style=solid, margin=0.02, label=
 </tr>
 <tr><td align="left" port="p_BEAR_Resource_EmbedInterceptor_construct">&lt;construct&gt;</td></tr>
 </table>>, shape=box]
-dependency__BEAR_Sunday_Annotation_DefaultSchemeHost [style=dashed, margin=0.02, label=<<table cellspacing="0" cellpadding="5" cellborder="0" border="0"><tr><td align="left" port="header" bgcolor="#aaaaaa">@<font color="#000000" point-size="10">BEAR\Sunday\Annotation\DefaultSchemeHost<br align="left"/></font><font color="#000000">Instance<br align="left"/></font></td></tr></table>>, shape=box]
+dependency__BEAR_Sunday_Annotation_DefaultSchemeHost [style=solid, margin=0.02, label=<<table cellspacing="0" cellpadding="5" cellborder="0" border="0"><tr><td align="left" port="header" bgcolor="#aaaaaa">@<font color="#000000" point-size="10">BEAR\Sunday\Annotation\DefaultSchemeHost<br align="left"/></font><font color="#000000">(string) page://self<br align="left"/></font></td></tr></table>>, shape=box]
 dependency_BEAR_Sunday_Extension_Transfer_TransferInterface_ [style=dashed, margin=0.02, label=
 <<table cellspacing="0" cellpadding="5" cellborder="0" border="0">
 <tr>

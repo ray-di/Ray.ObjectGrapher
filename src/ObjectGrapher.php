@@ -11,6 +11,7 @@ use Ray\Di\Container;
 use Ray\Di\Dependency;
 use Ray\Di\DependencyInterface;
 use Ray\Di\DependencyProvider;
+use Ray\Di\Exception\Unbound;
 use Ray\Di\Instance;
 
 final class ObjectGrapher
@@ -187,10 +188,9 @@ final class ObjectGrapher
     {
         $this->container->add((new Bind($this->container, $type))->to($type));
         $dependency = $this->container->getContainer()[$dependencyIndex];
-        if ($dependency instanceof Dependency) {
-            $setters = $this->lineDependency(new MyDependency($dependency));
-            $this->graph->addNode(new ClassNode(($this->classId)($type), $type, $setters));
-        }
+        assert($dependency instanceof Dependency);
+        $setters = $this->lineDependency(new MyDependency($dependency));
+        $this->graph->addNode(new ClassNode(($this->classId)($type), $type, $setters));
     }
 
     private function toString() : string
