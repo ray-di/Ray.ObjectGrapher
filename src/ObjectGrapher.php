@@ -6,12 +6,12 @@ namespace Ray\ObjectGrapher;
 
 use Ray\Di\AbstractModule;
 use Ray\Di\Argument;
-use Ray\Di\Arguments;
+use Ray\Di\Bind;
+use Ray\Di\Container;
 use Ray\Di\Dependency;
 use Ray\Di\DependencyInterface;
 use Ray\Di\DependencyProvider;
 use Ray\Di\Instance;
-use Ray\Di\SetterMethods;
 
 final class ObjectGrapher
 {
@@ -20,6 +20,10 @@ final class ObjectGrapher
      */
     private $prop;
 
+    /**
+     * @var Container
+     */
+    private $container;
     /**
      * @var Graph
      */
@@ -34,8 +38,8 @@ final class ObjectGrapher
     public function __invoke(AbstractModule $module) : string
     {
         $this->init();
-        $container = $module->getContainer()->getContainer();
-        foreach ($container as $dependencyIndex => $dependency) {
+        $this->container = $module->getContainer();
+        foreach ($this->container->getContainer() as $dependencyIndex => $dependency) {
             [$type, $name] = explode('-', $dependencyIndex);
             $this->setGraph($type, $name, $dependency);
         }
@@ -49,9 +53,7 @@ final class ObjectGrapher
         $newInstance = ($this->prop)($dependency, 'newInstance');
         $class = ($this->prop)($newInstance, 'class');
         $classId = $this->getClassId($class);
-        $arguments = ($this->prop)($newInstance, 'arguments');
-        $setterMethods = ($this->prop)($newInstance, 'setterMethods');
-        $setters = $this->lineDependency($class, $arguments, $setterMethods, $classId);
+        $setters = $this->lineDependency($dependency);
         $this->graph->addNode(new ProviderNode($classId, $class, $setters));
         if ($interfaceId) {
             $this->graph->addArrow(new ToProvider($interfaceId, $classId));
@@ -67,8 +69,14 @@ final class ObjectGrapher
     /**
      * @return array<string> setter symbol
      */
-    public function lineDependency(string $class, ?Arguments $arguments, SetterMethods $setterMethods, string $classId) : array
+    public function lineDependency(Dependency $dependency) : array
     {
+        $newInstance = ($this->prop)($dependency, 'newInstance');
+        $class = ($this->prop)($newInstance, 'class');
+        $classId = $this->getClassId($class);
+        $arguments = ($this->prop)($newInstance, 'arguments');
+        $setterMethods = ($this->prop)($newInstance, 'setterMethods');
+
         if (! $arguments) {
             return [];
         }
@@ -97,7 +105,32 @@ final class ObjectGrapher
         [$type, $name] = \explode('-', $dependencyIndex);
         $dependencyId = $this->getDependencyId($type, $name);
         $this->graph->addArrow(new Arrow($classPort, $dependencyId, $type));
+        if (class_exists($type)) {
+            $this->addClassNode($dependencyIndex, $type, $name);
+
+            return;
+        }
         $this->graph->addNode(new InterfaceNode($dependencyId, $type, $name));
+    }
+
+    private function addClassNode(string $dependencyIndex, string $type) : void
+    {
+        $isAbstract = (new \ReflectionClass($type))->isAbstract();
+        if ($isAbstract) {
+            $this->graph->addNode(new InterfaceNode($this->getClassId($type), $type, ''));
+
+            return;
+        }
+        $container = $this->container->getContainer();
+        if (! isset($container[$dependencyIndex])) {
+            // bind on the fly
+            $this->container->add((new Bind($this->container, $type))->to($type));
+        }
+        $dependency = $this->container->getContainer()[$dependencyIndex];
+        if ($dependency instanceof Dependency) {
+            $setters = $this->lineDependency($dependency);
+            $this->graph->addNode(new ClassNode($this->getClassId($type), $type, $setters));
+        }
     }
 
     /**
@@ -166,10 +199,10 @@ EOT;
             $this->graph->addArrow(new ToClass($interfaceId, $classId));
         }
         // constructor
-        $arguments = ($this->prop)($newInstance, 'arguments');
-        $setterMethods = ($this->prop)($newInstance, 'setterMethods');
-        $setters = $this->lineDependency($class, $arguments, $setterMethods, $classId);
-        $this->graph->addNode(new ClassNode($classId, $class, $setters));
+        if ($dependency instanceof Dependency) {
+            $setters = $this->lineDependency($dependency);
+            $this->graph->addNode(new ClassNode($classId, $class, $setters));
+        }
     }
 
     private function init() : void
