@@ -41,8 +41,7 @@ final class InterfaceNode implements NodeInterface
 
     public function __toString()
     {
-        return /* @lang html */
-            <<< EOT
+        $html = /* @lang html */ <<< EOT
 {$this->id} [style=dashed, margin=0.02, label=
 <<table cellspacing="0" cellpadding="5" cellborder="0" border="0">
 <tr>
@@ -53,6 +52,8 @@ final class InterfaceNode implements NodeInterface
 </tr>
 </table>>, shape=box]
 EOT;
+
+        return str_replace(PHP_EOL, '', $html);
     }
 
     public function setInstance() : void

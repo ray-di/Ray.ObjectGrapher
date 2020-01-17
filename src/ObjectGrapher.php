@@ -11,7 +11,6 @@ use Ray\Di\Container;
 use Ray\Di\Dependency;
 use Ray\Di\DependencyInterface;
 use Ray\Di\DependencyProvider;
-use Ray\Di\Exception\Unbound;
 use Ray\Di\Instance;
 
 final class ObjectGrapher
@@ -80,7 +79,7 @@ final class ObjectGrapher
             $this->graph->addNode(new InterfaceNode($dependencyId, $type, $name));
         }
         if ($dependency instanceof Instance) {
-            $this->graph->addNode(new InstanceNode($dependencyId, $type, $name));
+            $this->graph->addNode(new InstanceNode($dependencyId, $type, $name, $dependency));
         }
         if ($dependency instanceof Dependency) {
             $this->dependencyNode($dependencyId, new MyDependency($dependency), $isTargetBinding);

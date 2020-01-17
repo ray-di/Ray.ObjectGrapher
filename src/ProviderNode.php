@@ -37,11 +37,12 @@ final class ProviderNode implements NodeInterface
 
     public function __toString()
     {
-        return /* @lang html */
-            <<< EOT
+        $html = /* @lang html */ <<< EOT
 {$this->id} [style=solid, margin=0.02, label=<<table cellspacing="0" cellpadding="5" cellborder="1" border="0"><tr><td align="left" port="header" bgcolor="#aaaaaa"><font color="#ffffff">{$this->provider}<br align="left"/></font></td></tr>
 {$this->settersTable}
 </table>>, shape=box]
 EOT;
+
+        return str_replace(PHP_EOL, '', $html);
     }
 }
