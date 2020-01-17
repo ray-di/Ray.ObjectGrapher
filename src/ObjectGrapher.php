@@ -29,10 +29,28 @@ final class ObjectGrapher
      */
     private $graph;
 
+    /**
+     * @var DependencyId
+     */
+    private $dependencyId;
+
+    /**
+     * @var ClassId
+     */
+    private $classId;
+
+    /**
+     * @var SnakeName
+     */
+    private $snakeName;
+
     public function __construct()
     {
         $this->prop = new Prop;
         $this->graph = new Graph;
+        $this->dependencyId = new DependencyId;
+        $this->classId = new ClassId;
+        $this->snakeName = new SnakeName;
     }
 
     public function __invoke(AbstractModule $module) : string
@@ -56,7 +74,7 @@ final class ObjectGrapher
     private function setGraph(string $type, string $name, DependencyInterface $dependency) : void
     {
         $isTargetBinding = ! interface_exists($type);
-        $dependencyId = $this->getDependencyId($type, $name);
+        $dependencyId = ($this->dependencyId)($type, $name);
         if (! $isTargetBinding) {
             $this->graph->addNode(new InterfaceNode($dependencyId, $type, $name));
         }
@@ -75,7 +93,7 @@ final class ObjectGrapher
     {
         $newInstance = ($this->prop)($dependency, 'newInstance');
         $class = ($this->prop)($newInstance, 'class');
-        $classId = $this->getClassId($class);
+        $classId = ($this->classId)($class);
         if (! $isTargetBinding) {
             $this->graph->addArrow(new ToClass($interfaceId, $classId));
         }
@@ -86,12 +104,12 @@ final class ObjectGrapher
         }
     }
 
-    public function providerNode(string $interfaceId, DependencyInterface $dependency) : void
+    private function providerNode(string $interfaceId, DependencyInterface $dependency) : void
     {
         $dependency = ($this->prop)($dependency, 'dependency');
         $newInstance = ($this->prop)($dependency, 'newInstance');
         $class = ($this->prop)($newInstance, 'class');
-        $classId = $this->getClassId($class);
+        $classId = ($this->classId)($class);
         $setters = $this->lineDependency($dependency);
         $this->graph->addNode(new ProviderNode($classId, $class, $setters));
         if ($interfaceId) {
@@ -100,23 +118,14 @@ final class ObjectGrapher
         $this->graph->addNode(new ClassNode($classId, $class, $setters));
     }
 
-    private function getClassId(string $class) : string
-    {
-        return 'c_' . $this->getSnakeName($class);
-    }
-
-    public function getSnakeName(string $class) : string
-    {
-        return str_replace('\\', '_', $class);
-    }
     /**
      * @return array<string> setter symbol
      */
-    public function lineDependency(Dependency $dependency) : array
+    private function lineDependency(Dependency $dependency) : array
     {
         $newInstance = ($this->prop)($dependency, 'newInstance');
         $class = ($this->prop)($newInstance, 'class');
-        $classId = $this->getClassId($class);
+        $classId = ($this->classId)($class);
         $arguments = ($this->prop)($newInstance, 'arguments');
         $setterMethods = ($this->prop)($newInstance, 'setterMethods');
 
@@ -125,7 +134,7 @@ final class ObjectGrapher
         }
         // constructor injection
         $arguments = ($this->prop)($arguments, 'arguments');
-        $port = sprintf('p_%s_construct', $this->getSnakeName($class));
+        $port = sprintf('p_%s_construct', ($this->snakeName)($class));
         $setters = ['construct' => $port];
         $this->drawInjectionGraph($arguments, $classId, $port);
         // setter injection
@@ -135,7 +144,7 @@ final class ObjectGrapher
             $setterMethodArguments = ($this->prop)($setterMethod, 'arguments');
             $arguments = ($this->prop)($setterMethodArguments, 'arguments');
             $setterMethodName = ($this->prop)($setterMethod, 'method');
-            $setterMethodPort = sprintf('p_%s_%s', $this->getSnakeName($class), $setterMethodName);
+            $setterMethodPort = sprintf('p_%s_%s', ($this->snakeName)($class), $setterMethodName);
             $this->drawInjectionGraph($arguments, $classId, $setterMethodPort);
             $setters += [$setterMethodName => $setterMethodPort];
         }
@@ -143,11 +152,10 @@ final class ObjectGrapher
         return $setters;
     }
 
-
-    public function setterArrow(string $classPort, string $dependencyIndex) : void
+    private function setterArrow(string $classPort, string $dependencyIndex) : void
     {
         [$type, $name] = \explode('-', $dependencyIndex);
-        $dependencyId = $this->getDependencyId($type, $name);
+        $dependencyId = ($this->dependencyId)($type, $name);
         $this->graph->addArrow(new Arrow($classPort, $dependencyId, $type));
         if (class_exists($type)) {
             $this->addClassNode($dependencyIndex, $type);
@@ -163,7 +171,7 @@ final class ObjectGrapher
         assert(class_exists($type));
         $isAbstract = (new \ReflectionClass($type))->isAbstract();
         if ($isAbstract) {
-            $this->graph->addNode(new InterfaceNode($this->getClassId($type), $type, $name));
+            $this->graph->addNode(new InterfaceNode(($this->classId)($type), $type, $name));
 
             return;
         }
@@ -175,7 +183,7 @@ final class ObjectGrapher
         $dependency = $this->container->getContainer()[$dependencyIndex];
         if ($dependency instanceof Dependency) {
             $setters = $this->lineDependency($dependency);
-            $this->graph->addNode(new ClassNode($this->getClassId($type), $type, $setters));
+            $this->graph->addNode(new ClassNode(($this->classId)($type), $type, $setters));
         }
     }
 
@@ -192,15 +200,6 @@ final class ObjectGrapher
             $classPort = sprintf('%s:%s:e', $classId, $port);
             $this->setterArrow($classPort, $dependencyIndex);
         }
-    }
-
-    private function getDependencyId(string $interace, string $name) : string
-    {
-        if (class_exists($interace)) {
-            return $this->getClassId($interace);
-        }
-
-        return sprintf('t_%s_%s', $this->getSnakeName($interace), $this->getSnakeName($name));
     }
 
     private function toString() : string
