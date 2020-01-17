@@ -120,11 +120,10 @@ final class ObjectGrapher
         // constructor injection
         $arguments = ($this->prop)($dependency->arguments, 'arguments');
         $port = sprintf('p_%s_construct', ($this->snakeName)($dependency->class));
-        $setters = ['construct' => $port];
+        $setters = ($this->prop)($dependency->arguments, 'arguments') === [] ? [] : ['construct' => $port];
         $this->drawInjectionGraph($arguments, $dependency->classId, $port);
         // setter injection
         $setterMethods = ($this->prop)($dependency->setterMethods, 'setterMethods');
-
         foreach ($setterMethods as $setterMethod) {
             $setterMethodArguments = ($this->prop)($setterMethod, 'arguments');
             $arguments = ($this->prop)($setterMethodArguments, 'arguments');
@@ -162,13 +161,7 @@ final class ObjectGrapher
         }
         $container = $this->container->getContainer();
         if (! isset($container[$dependencyIndex])) {
-            // bind on the fly
-            $this->container->add((new Bind($this->container, $type))->to($type));
-        }
-        $dependency = $this->container->getContainer()[$dependencyIndex];
-        if ($dependency instanceof Dependency) {
-            $setters = $this->lineDependency(new MyDependency($dependency));
-            $this->graph->addNode(new ClassNode(($this->classId)($type), $type, $setters));
+            $this->bindOnTheFly($dependencyIndex, $type);
         }
     }
 
@@ -184,6 +177,19 @@ final class ObjectGrapher
             $dependencyIndex = ($this->prop)($argument, 'index');
             $classPort = sprintf('%s:%s:e', $classId, $port);
             $this->setterArrow($classPort, $dependencyIndex);
+        }
+    }
+
+    /**
+     * @throws \ReflectionException
+     */
+    private function bindOnTheFly(string $dependencyIndex, string $type) : void
+    {
+        $this->container->add((new Bind($this->container, $type))->to($type));
+        $dependency = $this->container->getContainer()[$dependencyIndex];
+        if ($dependency instanceof Dependency) {
+            $setters = $this->lineDependency(new MyDependency($dependency));
+            $this->graph->addNode(new ClassNode(($this->classId)($type), $type, $setters));
         }
     }
 

@@ -45,11 +45,7 @@ final class ClassNode implements NodeInterface
      */
     public function __construct(string $id, string $class, array $setters)
     {
-        if (in_array(
-            $id,
-            self::$ids,
-            true
-        )) {
+        if (in_array($id, self::$ids, true)) {
             $this->invalid = true;
 
             return;
