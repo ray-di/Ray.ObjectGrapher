@@ -60,14 +60,14 @@ final class ObjectGrapher
         if (! $isTargetBinding) {
             $this->graph->addNode(new InterfaceNode($dependencyId, $type, $name));
         }
+        if ($dependency instanceof Instance) {
+            $this->graph->addNode(new InstanceNode($dependencyId, $type, $name));
+        }
         if ($dependency instanceof Dependency) {
             $this->dependencyNode($dependencyId, $dependency, $isTargetBinding);
         }
         if ($dependency instanceof DependencyProvider) {
             $this->providerNode($dependencyId, $dependency);
-        }
-        if ($dependency instanceof Instance) {
-            $this->graph->addNode(new InstanceNode($dependencyId, $type, $name));
         }
     }
 
@@ -157,12 +157,13 @@ final class ObjectGrapher
         $this->graph->addNode(new InterfaceNode($dependencyId, $type, $name));
     }
 
-    private function addClassNode(string $dependencyIndex, string $type) : void
+    private function addClassNode(string $dependencyIndex) : void
     {
+        [$type, $name] = \explode('-', $dependencyIndex);
         assert(class_exists($type));
         $isAbstract = (new \ReflectionClass($type))->isAbstract();
         if ($isAbstract) {
-            $this->graph->addNode(new InterfaceNode($this->getClassId($type), $type, ''));
+            $this->graph->addNode(new InterfaceNode($this->getClassId($type), $type, $name));
 
             return;
         }

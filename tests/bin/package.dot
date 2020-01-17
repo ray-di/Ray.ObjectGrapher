@@ -119,7 +119,7 @@ t_Doctrine_Common_Cache_Cache_BEAR_RepositoryModule_Annotation_Storage [style=da
 c_Doctrine_Common_Cache_CacheProvider [style=dashed, margin=0.02, label=
 <<table cellspacing="0" cellpadding="5" cellborder="0" border="0">
 <tr>
-<td align="left" port="header" bgcolor="#ffffff">
+<td align="left" port="header" bgcolor="#ffffff"><font color="#000000" point-size="10">@BEAR\RepositoryModule\Annotation\Storage<br align="left"/></font>
 <font point-size="11" color="#333333">Doctrine\\Common\\Cache<br align="left"/></font>
 <font color="#000000">CacheProvider<br align="left"/></font>
 </td>
@@ -389,7 +389,7 @@ t_BEAR_QueryRepository_ResourceStorageInterface_ [style=dashed, margin=0.02, lab
 c_Doctrine_Common_Cache_CacheProvider [style=dashed, margin=0.02, label=
 <<table cellspacing="0" cellpadding="5" cellborder="0" border="0">
 <tr>
-<td align="left" port="header" bgcolor="#ffffff">
+<td align="left" port="header" bgcolor="#ffffff"><font color="#000000" point-size="10">@BEAR\RepositoryModule\Annotation\Storage<br align="left"/></font>
 <font point-size="11" color="#333333">Doctrine\\Common\\Cache<br align="left"/></font>
 <font color="#000000">CacheProvider<br align="left"/></font>
 </td>
