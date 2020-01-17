@@ -35,6 +35,9 @@
         }
     },
     "scripts": {
+        "image:package": [
+            "php ./tests/bin/package.php && dot -T png ./tests/bin/package.dot -o ./tests/bin/package.png && open ./tests/bin/package.png"
+        ],
         "test": [
             "vendor/bin/phpunit"
         ],
