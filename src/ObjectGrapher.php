@@ -47,6 +47,45 @@ final class ObjectGrapher
         return $this->toString();
     }
 
+    private function init() : void
+    {
+        Arrow::$history = [];
+        ToClass::$index = [];
+    }
+
+    private function setGraph(string $type, string $name, DependencyInterface $dependency) : void
+    {
+        $isTargetBinding = ! interface_exists($type);
+        $dependencyId = $this->getDependencyId($type, $name);
+        if (! $isTargetBinding) {
+            $this->graph->addNode(new InterfaceNode($dependencyId, $type, $name));
+        }
+        if ($dependency instanceof Dependency) {
+            $this->dependencyNode($dependencyId, $dependency, $isTargetBinding);
+        }
+        if ($dependency instanceof DependencyProvider) {
+            $this->providerNode($dependencyId, $dependency);
+        }
+        if ($dependency instanceof Instance) {
+            $this->graph->addNode(new InstanceNode($dependencyId, $type, $name));
+        }
+    }
+
+    private function dependencyNode(string $interfaceId, DependencyInterface $dependency, bool $isTargetBinding) : void
+    {
+        $newInstance = ($this->prop)($dependency, 'newInstance');
+        $class = ($this->prop)($newInstance, 'class');
+        $classId = $this->getClassId($class);
+        if (! $isTargetBinding) {
+            $this->graph->addArrow(new ToClass($interfaceId, $classId));
+        }
+        // constructor
+        if ($dependency instanceof Dependency) {
+            $setters = $this->lineDependency($dependency);
+            $this->graph->addNode(new ClassNode($classId, $class, $setters));
+        }
+    }
+
     public function providerNode(string $interfaceId, DependencyInterface $dependency) : void
     {
         $dependency = ($this->prop)($dependency, 'dependency');
@@ -61,11 +100,15 @@ final class ObjectGrapher
         $this->graph->addNode(new ClassNode($classId, $class, $setters));
     }
 
+    private function getClassId(string $class) : string
+    {
+        return 'c_' . $this->getSnakeName($class);
+    }
+
     public function getSnakeName(string $class) : string
     {
         return str_replace('\\', '_', $class);
     }
-
     /**
      * @return array<string> setter symbol
      */
@@ -99,6 +142,7 @@ final class ObjectGrapher
 
         return $setters;
     }
+
 
     public function setterArrow(string $classPort, string $dependencyIndex) : void
     {
@@ -149,24 +193,6 @@ final class ObjectGrapher
         }
     }
 
-    private function setGraph(string $type, string $name, DependencyInterface $dependency) : void
-    {
-        $isTargetBinding = ! interface_exists($type);
-        $dependencyId = $this->getDependencyId($type, $name);
-        if (! $isTargetBinding) {
-            $this->graph->addNode(new InterfaceNode($dependencyId, $type, $name));
-        }
-        if ($dependency instanceof Dependency) {
-            $this->dependencyNode($dependencyId, $dependency, $isTargetBinding);
-        }
-        if ($dependency instanceof DependencyProvider) {
-            $this->providerNode($dependencyId, $dependency);
-        }
-        if ($dependency instanceof Instance) {
-            $this->graph->addNode(new InstanceNode($dependencyId, $type, $name));
-        }
-    }
-
     private function getDependencyId(string $interace, string $name) : string
     {
         if (class_exists($interace)) {
@@ -174,11 +200,6 @@ final class ObjectGrapher
         }
 
         return sprintf('t_%s_%s', $this->getSnakeName($interace), $this->getSnakeName($name));
-    }
-
-    private function getClassId(string $class) : string
-    {
-        return 'c_' . $this->getSnakeName($class);
     }
 
     private function toString() : string
@@ -189,26 +210,5 @@ graph [rankdir=TB];
 {$this->graph}
 }
 EOT;
-    }
-
-    private function dependencyNode(string $interfaceId, DependencyInterface $dependency, bool $isTargetBinding) : void
-    {
-        $newInstance = ($this->prop)($dependency, 'newInstance');
-        $class = ($this->prop)($newInstance, 'class');
-        $classId = $this->getClassId($class);
-        if (! $isTargetBinding) {
-            $this->graph->addArrow(new ToClass($interfaceId, $classId));
-        }
-        // constructor
-        if ($dependency instanceof Dependency) {
-            $setters = $this->lineDependency($dependency);
-            $this->graph->addNode(new ClassNode($classId, $class, $setters));
-        }
-    }
-
-    private function init() : void
-    {
-        Arrow::$history = [];
-        ToClass::$index = [];
     }
 }
