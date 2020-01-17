@@ -4,10 +4,17 @@ _Using ObjectGrapher to visualize Ray.Di applications_
 
 ![fake](https://user-images.githubusercontent.com/529021/72650686-866ec100-39c4-11ea-8b49-2d86d991dc6d.png)
 
-### Grapher
+## Grapher
 When you've written a sophisticated application, Ray.Di's rich introspection API can describe the object graph in detail. The built-in grapher extension exposes this data as an easily understandable visualization. It can show the bindings and dependencies from several classes in a complex application in a unified diagram.
 
-#### Generating a .dot file
+## Installation
+You can install the Annotation component with composer:
+
+```
+composer --dev require ray/object-visual-grapher
+```
+
+### Generating a .dot file
 Ray.Di's grapher leans heavily on [GraphViz](http://www.graphviz.org/), an open source graph visualization package. It cleanly separates graph specification from visualization and layout. To produce a graph `.dot` file for an `Injector`, you can use the following code:
 
 ```php
@@ -17,7 +24,7 @@ $dot = (new ObjectGrapher)(new FooModule);
 file_put_contents('path/to/file', $dot);
 ```
 
-#### The .dot file
+### The .dot file
 Executing the code above produces a `.dot` file that specifies a graph. Each entry in the file represents either a node or an edge in the graph. Here's a sample `.dot` file:
 
 ```dot
@@ -29,7 +36,7 @@ dependency_BEAR_Resource_ResourceInterface_ -> class_BEAR_Resource_Resource [sty
 dependency_BEAR_Resource_FactoryInterface_ -> class_BEAR_Resource_Factory [style=dashed, arrowtail=none, arrowhead=onormal]
 ```
 
-#### Rendering the .dot file
+### Rendering the .dot file
 Download a [Graphviz viewer](http://www.graphviz.org/) for your platform, and use it to render the `.dot` file. The rendered graph might take a few minutes to render. Exporting the rendered graph as a PDF or image makes it easier to share.
 
 On Linux, you can use the command-line `dot` tool to convert `.dot` files into images.
