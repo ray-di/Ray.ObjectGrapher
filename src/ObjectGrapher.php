@@ -106,7 +106,7 @@ final class ObjectGrapher
         $dependencyId = $this->getDependencyId($type, $name);
         $this->graph->addArrow(new Arrow($classPort, $dependencyId, $type));
         if (class_exists($type)) {
-            $this->addClassNode($dependencyIndex, $type, $name);
+            $this->addClassNode($dependencyIndex, $type);
 
             return;
         }
@@ -115,6 +115,7 @@ final class ObjectGrapher
 
     private function addClassNode(string $dependencyIndex, string $type) : void
     {
+        assert(class_exists($type));
         $isAbstract = (new \ReflectionClass($type))->isAbstract();
         if ($isAbstract) {
             $this->graph->addNode(new InterfaceNode($this->getClassId($type), $type, ''));
