@@ -13,7 +13,7 @@ Ray.Di's grapher leans heavily on [GraphViz](http://www.graphviz.org/), an open 
 ```php
 use Ray\ObjectGrapher\ObjectGrapher;
 
-$dot = (new ObjectGrapher(new FooModule))();
+$dot = (new ObjectGrapher)(new FooModule);
 file_put_contents('path/to/file', $dot);
 ```
 
