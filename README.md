@@ -37,13 +37,12 @@ dependency_BEAR_Resource_FactoryInterface_ -> class_BEAR_Resource_Factory [style
 ```
 
 ### Rendering the .dot file
-Download a [Graphviz viewer](http://www.graphviz.org/) for your platform, and use it to render the `.dot` file. The rendered graph might take a few minutes to render. Exporting the rendered graph as a PDF or image makes it easier to share.
+Download a [Graphviz viewer](http://www.graphviz.org/) for your platform, and use it to render the `.dot` file.
 
 On Linux, you can use the command-line `dot` tool to convert `.dot` files into images.
 ```shell
   dot -T png my_injector.dot > my_injector.png
 ```
-The tool currently has issues with our font tags. We're still working that out.
 
 #### Graph display
 
@@ -55,3 +54,6 @@ Edges:
 Nodes:
    * Implementation types are given *black backgrounds*.
    * Implementation instances have *gray backgrounds*.
+
+---
+*This document is mostly taken from https://github.com/google/guice/wiki/Grapher.*
