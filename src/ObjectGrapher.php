@@ -160,7 +160,7 @@ final class ObjectGrapher
         }
         $container = $this->container->getContainer();
         if (! isset($container[$dependencyIndex])) {
-            $this->bindOnTheFly($dependencyIndex, $type);
+            $this->bindOnTheFly($dependencyIndex, $type, $name);
         }
     }
 
@@ -182,9 +182,9 @@ final class ObjectGrapher
     /**
      * @throws \ReflectionException
      */
-    private function bindOnTheFly(string $dependencyIndex, string $type) : void
+    private function bindOnTheFly(string $dependencyIndex, string $type, string $name) : void
     {
-        $this->container->add((new Bind($this->container, $type))->to($type));
+        $this->container->add((new Bind($this->container, $type))->annotatedWith($name)->to($type));
         $dependency = $this->container->getContainer()[$dependencyIndex];
         assert($dependency instanceof Dependency);
         $setters = $this->lineDependency(new MyDependency($dependency));
