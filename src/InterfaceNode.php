@@ -4,6 +4,9 @@ declare(strict_types=1);
 
 namespace Ray\ObjectGrapher;
 
+use function class_exists;
+use function interface_exists;
+
 final class InterfaceNode implements NodeInterface
 {
     /**
@@ -31,9 +34,18 @@ final class InterfaceNode implements NodeInterface
      */
     private $bgColor;
 
+    /** @var bool */
+    private $isInValid = false;
+
     public function __construct(string $id, string $interface, string $named)
     {
         $this->id = $id;
+        if (! interface_exists($interface) && ! class_exists($interface)) {
+            $this->isInValid = true;
+
+            return;
+        }
+
         $interface ? $this->setNamespace($interface) : $this->setInstance();
         $this->named = $named ? "<font color=\"#000000\" point-size=\"10\">@{$named}<br align=\"left\"/></font>" : '';
         $this->bgColor = $interface ? 'ffffff' : 'aaaaaa';
@@ -41,7 +53,7 @@ final class InterfaceNode implements NodeInterface
 
     public function __toString()
     {
-        $html = /* @lang html */ <<< EOT
+        $html = $this->isInValid ? '' : /* @lang html */ <<< EOT
 {$this->id} [style=dashed, margin=0.02, label=
 <<table cellspacing="0" cellpadding="5" cellborder="0" border="0">
 <tr>
@@ -63,7 +75,6 @@ EOT;
 
     private function setNamespace(string $interface) : void
     {
-        assert(interface_exists($interface) || class_exists($interface));
         $ref = new \ReflectionClass($interface);
         $this->namespace = str_replace('\\', '\\\\', $ref->getNamespaceName());
         $this->interface = $ref->getShortName();
