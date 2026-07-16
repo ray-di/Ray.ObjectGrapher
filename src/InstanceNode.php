@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Ray\ObjectGrapher;
 
-use function htmlspecialchars;
 use Ray\Di\Instance;
 
 final class InstanceNode implements NodeInterface
@@ -34,7 +33,7 @@ final class InstanceNode implements NodeInterface
         $this->id = $id;
         $this->interface = addslashes($interface);
         $this->named = $named ? /* @lang html */ "@<font color=\"#000000\" point-size=\"10\">{$named}<br align=\"left\"/></font>" : '';
-        $this->type = getType($instance->value);
+        $this->type = gettype($instance->value);
     }
 
     public function __toString()
@@ -45,7 +44,7 @@ final class InstanceNode implements NodeInterface
 <tr>
 <td align="left" port="header" bgcolor="#aaaaaa">{$this->named}
 <font point-size="11" color="#333333">{$this->interface}<br align="left"/></font>
-<font color="#000000">instance ($this->type)<br align="left"/></font>
+<font color="#000000">instance ({$this->type})<br align="left"/></font>
 </td>
 </tr>
 </table>>, shape=box]
