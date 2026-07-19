@@ -188,7 +188,6 @@ final class ObjectGrapher
     private function drawInjectionGraph(array $arguments, string $classId, string $port): void
     {
         foreach ($arguments as $argument) {
-            assert($argument instanceof Argument);
             $dependencyIndex = ($this->prop)($argument, 'index');
             $classPort = sprintf('%s:%s:e', $classId, $port);
             $this->setterArrow($classPort, $dependencyIndex);

@@ -17,7 +17,7 @@
         "doctrine/annotations": "^1.8",
         "doctrine/coding-standard": "^14.0",
         "phpmd/phpmd": "^2.6",
-        "phpstan/phpstan": "^0.12.5",
+        "phpstan/phpstan": "^2.0",
         "phpunit/phpunit": "^10.5",
         "ray/di": "^2.10|2.x-dev",
         "slevomat/coding-standard": "^8.15",
@@ -52,7 +52,7 @@
         "tests": [
             "@cs",
             "@test",
-            "phpstan analyse -l max src -c phpstan.neon --no-progress"
+            "phpstan analyse -c phpstan.neon --no-progress"
         ],
         "coverage": [
             "php -dzend_extension=xdebug.so -dxdebug.mode=coverage ./vendor/bin/phpunit --coverage-text --coverage-html=build/coverage"
