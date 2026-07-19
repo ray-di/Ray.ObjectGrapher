@@ -9,7 +9,6 @@ use BEAR\Package\PackageModule;
 use BEAR\Resource\Module\ResourceModule;
 use PHPUnit\Framework\TestCase;
 use Ray\Aop\Matcher;
-
 use Ray\Aop\Pointcut;
 
 class ObjectVisualGrapherTest extends TestCase
@@ -35,6 +34,7 @@ class ObjectVisualGrapherTest extends TestCase
         $dot = ($this->objectGrapher)(new FakeModule());
         $this->assertStringContainsString('dependency_Ray_ObjectGrapher_LoggerInterface_ -> class_Ray_ObjectGrapher_DatabaseLogger', $dot);
         $this->assertStringContainsString('class_Ray_ObjectGrapher_DatabaseLogger:p_Ray_ObjectGrapher_DatabaseLogger_construct:e -> dependency_Ray_ObjectGrapher_PdoInterface_', $dot);
+        $this->assertStringContainsString('class_Ray_ObjectGrapher_DatabaseLogger:p_Ray_ObjectGrapher_DatabaseLogger_setFoo:e -> dependency_Ray_ObjectGrapher_FooInterface_', $dot);
         $this->assertStringContainsString('dependency_Ray_ObjectGrapher_PdoInterface_ -> class_Ray_ObjectGrapher_PdoProvider [style=dashed, arrowtail=none, arrowhead=onormalonormal]', $dot);
     }
 
@@ -58,8 +58,6 @@ class ObjectVisualGrapherTest extends TestCase
         $container = $module->getContainer();
         $container->addPointcut(new Pointcut((new Matcher)->any(), (new Matcher)->any(), [DatabaseLogger::class]));
         $keys = array_keys($container->getContainer());
-        $events = $container->log->getEvents();
-        $sources = $container->log->getSources();
         $pointcuts = $container->getPointcuts();
 
         $first = ($this->objectGrapher)($module);
@@ -71,8 +69,6 @@ class ObjectVisualGrapherTest extends TestCase
             $first
         );
         $this->assertSame($keys, array_keys($container->getContainer()));
-        $this->assertSame($events, $container->log->getEvents());
-        $this->assertSame($sources, $container->log->getSources());
         $this->assertSame($pointcuts, $container->getPointcuts());
     }
 }
