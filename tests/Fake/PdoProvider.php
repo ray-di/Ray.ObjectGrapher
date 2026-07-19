@@ -10,16 +10,12 @@ use Ray\Di\ProviderInterface;
 
 class PdoProvider implements ProviderInterface
 {
-    /**
-     * @Named("dsn=dsn,id=id,pass=pass")
-     */
+    #[Named('dsn=dsn,id=id,pass=pass')]
     public function __construct(string $dsn, string $id, string $pass)
     {
     }
 
-    /**
-     * @Inject
-     */
+    #[Inject]
     public function setFoo(FooInterface $foo)
     {
     }

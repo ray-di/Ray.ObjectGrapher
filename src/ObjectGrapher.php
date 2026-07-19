@@ -24,6 +24,16 @@ final class ObjectGrapher
      * @var Container
      */
     private $container;
+
+    /**
+     * @var Container
+     */
+    private $analysisContainer;
+
+    /**
+     * @var array<string, Dependency>
+     */
+    private $dependencies = [];
     /**
      * @var Graph
      */
@@ -68,6 +78,9 @@ final class ObjectGrapher
     private function init() : void
     {
         Arrow::$history = ToClass::$index = ClassNode::$ids = [];
+        $this->graph = new Graph;
+        $this->analysisContainer = new Container;
+        $this->dependencies = [];
     }
 
     private function setGraph(string $type, string $name, DependencyInterface $dependency) : void
@@ -159,9 +172,11 @@ final class ObjectGrapher
             return;
         }
         $container = $this->container->getContainer();
-        if (! isset($container[$dependencyIndex])) {
-            $this->bindOnTheFly($dependencyIndex, $type, $name);
+        if (isset($container[$dependencyIndex]) || isset($this->dependencies[$dependencyIndex])) {
+            return;
         }
+
+        $this->bindOnTheFly($dependencyIndex, $type, $name);
     }
 
     /**
@@ -184,9 +199,15 @@ final class ObjectGrapher
      */
     private function bindOnTheFly(string $dependencyIndex, string $type, string $name) : void
     {
-        $this->container->add((new Bind($this->container, $type))->annotatedWith($name)->to($type));
-        $dependency = $this->container->getContainer()[$dependencyIndex];
+        /** @var class-string $type */
+        $bind = new Bind($this->analysisContainer, $type);
+        if ($name !== '') {
+            $bind->annotatedWith($name);
+        }
+        $bind->to($type);
+        $dependency = $this->analysisContainer->getContainer()[$dependencyIndex];
         assert($dependency instanceof Dependency);
+        $this->dependencies[$dependencyIndex] = $dependency;
         $setters = $this->lineDependency(new MyDependency($dependency));
         $this->graph->addNode(new ClassNode(($this->classId)($type), $type, $setters));
     }

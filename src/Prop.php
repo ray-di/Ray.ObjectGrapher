@@ -7,7 +7,7 @@ namespace Ray\ObjectGrapher;
 final class Prop
 {
     /**
-     * Set object property accesible
+     * Read object property via reflection
      *
      * @param null|object $object
      * @param string      $prop   property
@@ -24,7 +24,6 @@ final class Prop
         } catch (\ReflectionException $e) {
             return '';
         }
-        $property->setAccessible(true);
 
         return $property->getValue($object);
     }

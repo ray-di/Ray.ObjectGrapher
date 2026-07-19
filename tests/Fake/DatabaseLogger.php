@@ -12,9 +12,7 @@ class DatabaseLogger implements LoggerInterface
     {
     }
 
-    /**
-     * @Inject
-     */
+    #[Inject]
     public function setFoo(FooInterface $foo)
     {
     }
