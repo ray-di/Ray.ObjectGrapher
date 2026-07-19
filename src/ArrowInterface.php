@@ -6,5 +6,5 @@ namespace Ray\ObjectGrapher;
 
 interface ArrowInterface
 {
-    public function __toString();
+    public function __toString(): string;
 }

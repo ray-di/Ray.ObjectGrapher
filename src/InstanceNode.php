@@ -6,26 +6,24 @@ namespace Ray\ObjectGrapher;
 
 use Ray\Di\Instance;
 
+use function addslashes;
+use function gettype;
+use function str_replace;
+
+use const PHP_EOL;
+
 final class InstanceNode implements NodeInterface
 {
-    /**
-     * @var string
-     */
+    /** @var string */
     private $id;
 
-    /**
-     * @var string
-     */
+    /** @var string */
     private $interface;
 
-    /**
-     * @var string
-     */
+    /** @var string */
     private $type;
 
-    /**
-     * @var string
-     */
+    /** @var string */
     private $named;
 
     public function __construct(string $id, string $interface, string $named, Instance $instance)
@@ -36,7 +34,7 @@ final class InstanceNode implements NodeInterface
         $this->type = gettype($instance->value);
     }
 
-    public function __toString()
+    public function __toString(): string
     {
         $html = /* @lang html */ <<< EOT
 {$this->id} [style=dashed, margin=0.02, label=

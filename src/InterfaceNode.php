@@ -4,31 +4,30 @@ declare(strict_types=1);
 
 namespace Ray\ObjectGrapher;
 
+use ReflectionClass;
+
+use function assert;
+use function class_exists;
+use function interface_exists;
+use function str_replace;
+
+use const PHP_EOL;
+
 final class InterfaceNode implements NodeInterface
 {
-    /**
-     * @var string
-     */
+    /** @var string */
     private $id;
 
-    /**
-     * @var string
-     */
+    /** @var string */
     private $namespace;
 
-    /**
-     * @var string
-     */
+    /** @var string */
     private $interface;
 
-    /**
-     * @var string
-     */
+    /** @var string */
     private $named;
 
-    /**
-     * @var string
-     */
+    /** @var string */
     private $bgColor;
 
     public function __construct(string $id, string $interface, string $named)
@@ -39,7 +38,7 @@ final class InterfaceNode implements NodeInterface
         $this->bgColor = $interface ? 'ffffff' : 'aaaaaa';
     }
 
-    public function __toString()
+    public function __toString(): string
     {
         $html = /* @lang html */ <<< EOT
 {$this->id} [style=dashed, margin=0.02, label=
@@ -56,15 +55,15 @@ EOT;
         return str_replace(PHP_EOL, '', $html);
     }
 
-    public function setInstance() : void
+    public function setInstance(): void
     {
         $this->interface = 'instance';
     }
 
-    private function setNamespace(string $interface) : void
+    private function setNamespace(string $interface): void
     {
         assert(interface_exists($interface) || class_exists($interface));
-        $ref = new \ReflectionClass($interface);
+        $ref = new ReflectionClass($interface);
         $this->namespace = str_replace('\\', '\\\\', $ref->getNamespaceName());
         $this->interface = $ref->getShortName();
     }

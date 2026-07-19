@@ -4,21 +4,19 @@ declare(strict_types=1);
 
 namespace Ray\ObjectGrapher;
 
+use function str_replace;
+
+use const PHP_EOL;
+
 final class ProviderNode implements NodeInterface
 {
-    /**
-     * @var string
-     */
+    /** @var string */
     private $id;
 
-    /**
-     * @var string
-     */
+    /** @var string */
     private $provider;
 
-    /**
-     * @var string
-     */
+    /** @var string */
     private $settersTable = '';
 
     /**
@@ -35,7 +33,7 @@ final class ProviderNode implements NodeInterface
         }
     }
 
-    public function __toString()
+    public function __toString(): string
     {
         $html = /* @lang html */ <<< EOT
 {$this->id} [style=solid, margin=0.02, label=<<table cellspacing="0" cellpadding="5" cellborder="1" border="0"><tr><td align="left" port="header" bgcolor="#aaaaaa"><font color="#ffffff">{$this->provider}<br align="left"/></font></td></tr>
