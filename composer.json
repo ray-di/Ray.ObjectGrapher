@@ -13,8 +13,7 @@
     },
     "require-dev": {
         "bear/package": "^1.9.6",
-        "dealerdirect/phpcodesniffer-composer-installer": "^1.0",
-        "doctrine/annotations": "^1.8",
+        "bear/query-repository": "^1.13",
         "doctrine/coding-standard": "^14.0",
         "phpmd/phpmd": "^2.6",
         "phpstan/phpstan": "^2.0",
@@ -26,7 +25,7 @@
     "config": {
         "sort-packages": true,
         "allow-plugins": {
-            "dealerdirect/phpcodesniffer-composer-installer": true
+            "dealerdirect/phpcodesniffer-composer-installer": false
         }
     },
     "autoload": {
