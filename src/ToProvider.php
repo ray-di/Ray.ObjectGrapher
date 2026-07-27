@@ -6,14 +6,10 @@ namespace Ray\ObjectGrapher;
 
 final class ToProvider implements ArrowInterface
 {
-    /**
-     * @var string
-     */
+    /** @var string */
     public $class;
 
-    /**
-     * @var string
-     */
+    /** @var string */
     private $interface;
 
     public function __construct(string $interface, string $class)
@@ -22,7 +18,7 @@ final class ToProvider implements ArrowInterface
         $this->interface = $interface;
     }
 
-    public function __toString()
+    public function __toString(): string
     {
         return <<<EOT
 {$this->interface} -> {$this->class} [style=dashed, arrowtail=none, arrowhead=onormalonormal]

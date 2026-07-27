@@ -6,8 +6,8 @@ namespace Ray\ObjectGrapher;
 
 final class ClassId
 {
-    public function __invoke(string $class) : string
+    public function __invoke(string $class): string
     {
-        return 'class_' . (new SnakeName)($class);
+        return 'class_' . (new SnakeName())($class);
     }
 }

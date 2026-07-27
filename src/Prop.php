@@ -4,12 +4,16 @@ declare(strict_types=1);
 
 namespace Ray\ObjectGrapher;
 
+use LogicException;
+use ReflectionClass;
+use ReflectionException;
+
 final class Prop
 {
     /**
      * Read object property via reflection
      *
-     * @param null|object $object
+     * @param object|null $object
      * @param string      $prop   property
      *
      * @return mixed|string
@@ -17,11 +21,12 @@ final class Prop
     public function __invoke($object, string $prop)
     {
         if (! $object) {
-            throw new \LogicException();
+            throw new LogicException();
         }
+
         try {
-            $property = (new \ReflectionClass(get_class($object)))->getProperty($prop);
-        } catch (\ReflectionException $e) {
+            $property = (new ReflectionClass($object::class))->getProperty($prop);
+        } catch (ReflectionException) {
             return '';
         }
 

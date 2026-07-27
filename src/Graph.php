@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Ray\ObjectGrapher;
 
+use const PHP_EOL;
+
 final class Graph
 {
     /**
@@ -20,12 +22,13 @@ final class Graph
      */
     private $arrows;
 
-    public function __toString()
+    public function __toString(): string
     {
         $string = '';
         foreach ($this->nodes as $node) {
             $string .= (string) $node . PHP_EOL;
         }
+
         $string .= PHP_EOL;
         foreach ($this->arrows as $arrow) {
             $string .= (string) $arrow . PHP_EOL;
@@ -34,12 +37,12 @@ final class Graph
         return $string;
     }
 
-    public function addNode(NodeInterface $node) : void
+    public function addNode(NodeInterface $node): void
     {
         $this->nodes[] = $node;
     }
 
-    public function addArrow(ArrowInterface $arrow) : void
+    public function addArrow(ArrowInterface $arrow): void
     {
         $this->arrows[] = $arrow;
     }

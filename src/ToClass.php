@@ -6,24 +6,16 @@ namespace Ray\ObjectGrapher;
 
 final class ToClass implements ArrowInterface
 {
-    /**
-     * @var array<bool>
-     */
+    /** @var array<bool> */
     public static $index;
 
-    /**
-     * @var string
-     */
+    /** @var string */
     public $class;
 
-    /**
-     * @var string
-     */
+    /** @var string */
     private $interface;
 
-    /**
-     * @var bool
-     */
+    /** @var bool */
     private $noArrow;
 
     public function __construct(string $interfaceId, string $classId)
@@ -35,7 +27,7 @@ final class ToClass implements ArrowInterface
         self::$index[$indexId] = true;
     }
 
-    public function __toString()
+    public function __toString(): string
     {
         return $this->noArrow ? '' : <<<EOT
 {$this->interface} -> {$this->class} [style=dashed, arrowtail=none, arrowhead=onormal]

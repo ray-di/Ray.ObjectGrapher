@@ -4,36 +4,34 @@ declare(strict_types=1);
 
 namespace Ray\ObjectGrapher;
 
+use ReflectionClass;
+use ReflectionException;
+
+use function assert;
+use function class_exists;
+use function in_array;
+use function str_replace;
+
+use const PHP_EOL;
+
 final class ClassNode implements NodeInterface
 {
-    /**
-     * @var array<string>
-     */
+    /** @var array<string> */
     public static $ids = [];
 
-    /**
-     * @var string
-     */
+    /** @var string */
     private $id;
 
-    /**
-     * @var string
-     */
+    /** @var string */
     private $namespace;
 
-    /**
-     * @var string
-     */
+    /** @var string */
     private $class;
 
-    /**
-     * @var string
-     */
+    /** @var string */
     private $settersTable = '';
 
-    /**
-     * @var bool
-     */
+    /** @var bool */
     private $invalid = false;
 
     /**
@@ -41,7 +39,7 @@ final class ClassNode implements NodeInterface
      * @param string        $class   class
      * @param array<string> $setters
      *
-     * @throws \ReflectionException
+     * @throws ReflectionException
      */
     public function __construct(string $id, string $class, array $setters)
     {
@@ -50,10 +48,11 @@ final class ClassNode implements NodeInterface
 
             return;
         }
+
         self::$ids[] = $id;
         $this->id = $id;
         assert(class_exists($class));
-        $ref = new \ReflectionClass($class);
+        $ref = new ReflectionClass($class);
         $this->namespace = str_replace('\\', '\\\\', $ref->getNamespaceName());
         $this->class = $ref->getShortName();
         foreach ($setters as $setterMethod => $port) {
@@ -61,7 +60,7 @@ final class ClassNode implements NodeInterface
         }
     }
 
-    public function __toString()
+    public function __toString(): string
     {
         $html = $this->invalid ? '' : /* @lang html */  <<< EOT
 {$this->id} [style=solid, margin=0.02, label=

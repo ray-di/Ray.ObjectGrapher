@@ -10,32 +10,24 @@ use Ray\Di\SetterMethod;
 
 final class MyDependency
 {
-    /**
-     * @var string
-     */
+    /** @var string */
     public $class;
 
-    /**
-     * @var string
-     */
+    /** @var string */
     public $classId;
 
-    /**
-     * @var null|Arguments
-     */
+    /** @var Arguments|null */
     public $arguments;
 
-    /**
-     * @var SetterMethod
-     */
+    /** @var SetterMethod */
     public $setterMethods;
 
     public function __construct(Dependency $dependency)
     {
-        $prop = new Prop;
+        $prop = new Prop();
         $newInstance = $prop($dependency, 'newInstance');
         $this->class = $prop($newInstance, 'class');
-        $this->classId = (new ClassId)($this->class);
+        $this->classId = (new ClassId())($this->class);
         $this->arguments = $prop($newInstance, 'arguments');
         $this->setterMethods = $prop($newInstance, 'setterMethods');
     }

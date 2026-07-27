@@ -4,14 +4,18 @@ declare(strict_types=1);
 
 namespace Ray\ObjectGrapher;
 
+use function class_exists;
+use function sprintf;
+
 final class DependencyId
 {
-    public function __invoke(string $interace, string $name) : string
+    public function __invoke(string $interace, string $name): string
     {
         if (class_exists($interace)) {
-            return (new ClassId)($interace);
+            return (new ClassId())($interace);
         }
-        $snakeName = new SnakeName;
+
+        $snakeName = new SnakeName();
 
         return sprintf('dependency_%s_%s', ($snakeName)($interace), ($snakeName)($name));
     }
