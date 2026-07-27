@@ -14,11 +14,13 @@
     "require-dev": {
         "bear/package": "^1.9.6",
         "bear/query-repository": "^1.13",
+        "bear/resource": "^1.27.0",
+        "bear/sunday": "^1.8.0",
         "doctrine/coding-standard": "^14.0",
         "phpmd/phpmd": "^2.6",
         "phpstan/phpstan": "^2.0",
         "phpunit/phpunit": "^10.5",
-        "ray/di": "^2.10|2.x-dev",
+        "ray/di": "^2.19.0|2.x-dev",
         "slevomat/coding-standard": "^8.15",
         "squizlabs/php_codesniffer": "^4.0"
     },
